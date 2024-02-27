@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObject/Item", order = 1)]
+public class Item : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string itemName;
+
+    [SerializeField] private Sprite itemIcon;
+
+    [SerializeField] private int itemCost;
+
+    [SerializeField] private int itemMaxStack = 1;
+
+    public string ItemName
     {
-        
+        get { return itemName; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Sprite ItemIcon
     {
-        
+        get { return itemIcon; }
+    }
+
+    public int ItemCost
+    {
+        get { return itemCost; }
+    }
+
+    public int ItemMaxStack
+    {
+        get { return itemMaxStack; }
     }
 }
