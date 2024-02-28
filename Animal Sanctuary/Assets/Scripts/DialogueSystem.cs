@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Characters
     {
-        
+        Leo,
+        Ella
     }
 
-    // Update is called once per frame
-    void Update()
+    public Characters currentCharacterSpeaking;
+
+    public Dictionary<Characters, string> introductionDialogue = new Dictionary<Characters, string>()
     {
-        
-    }
+        {Characters.Leo, "Hello! How are you, mate! Welcome to Africa. How you doin’?"},
+        {Characters.Ella, "Test"}
+
+    };
 }
