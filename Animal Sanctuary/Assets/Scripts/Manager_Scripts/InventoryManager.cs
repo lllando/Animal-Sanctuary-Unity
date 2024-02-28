@@ -3,11 +3,17 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private int inventorySize = 12;
-
     [SerializeField] private Item itemTest;
 
-    private List<InventoryItem> _inventory = new List<InventoryItem>();
+    private InventoryItem[] _inventory = new InventoryItem[12];
+
+    private void Awake()
+    {
+        for(int i = 0; i < 12; i++)
+        {
+            _inventory[i] = new InventoryItem(null, 0);
+        }
+    }
 
     private void Update()
     {
@@ -24,119 +30,63 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item, int stackSize)
     {
-        if(!ItemStackExists(item))
+        foreach(InventoryItem inventoryItem in _inventory)
         {
-            if(_inventory.Count < inventorySize)
+            if(inventoryItem.Item == item)
             {
-                _inventory.Add(new InventoryItem(item, stackSize));
-            }
-        }
-        else
-        {
-            foreach (InventoryItem inventoryItem in _inventory)
-            {
-                if (inventoryItem.Item == item)
+                if(inventoryItem.StackSize + stackSize <= item.ItemMaxStack)
                 {
+                    Debug.Log("An item exists! And there is space!");
+                    inventoryItem.StackSize += stackSize;
+                    GameManager.InterfaceManager.UpdateInventory(_inventory);
+                    return;
+                }
+                else
+                {
+                    Debug.Log("An item exists, but there is no space!");
+                    int room = item.ItemMaxStack - inventoryItem.StackSize;
+                    int leftOver = stackSize - room;
 
-                    int sum = inventoryItem.StackSize + stackSize;
-                    int left = sum - item.ItemMaxStack;
-
-                    if (inventoryItem.StackSize + stackSize > item.ItemMaxStack)
+                    if(leftOver > 0)
                     {
-                        // int leftOvers = in item.ItemMaxStack - stackSize;
                         inventoryItem.StackSize = item.ItemMaxStack;
-
-                        if (left > 0)
-                        {
-                            AddItem(item, left);
-                        }
+                        AddItem(item, leftOver);
+                        Debug.Log("There was some items left over, so we are going to try and add the item again");
                     }
                     else
                     {
-                        inventoryItem.StackSize = stackSize;
+                        inventoryItem.StackSize += stackSize;
+                        Debug.Log("There was room for an item in this stack, so we just add the item count to this inventory slot");
                     }
 
-                    break;
+                    GameManager.InterfaceManager.UpdateInventory(_inventory);
+                    return;
                 }
             }
         }
 
-        GameManager.InterfaceManager.UpdateInventory(_inventory);
+        Debug.Log("An item was not found, so just add a new inventory item");
+
+        foreach(InventoryItem check in _inventory)
+        {
+            if(check.Item == null)
+            {
+                check.Item = item;
+                check.StackSize = stackSize;
+                Debug.Log("An inventory slot was free, so we added an item!");
+                GameManager.InterfaceManager.UpdateInventory(_inventory);
+                return;
+            }
+        }
+
+        Debug.Log("Inventory was full!");
     }
 
     public void RemoveItem(Item item, int stackSize)
     {
-        if(ItemExists(item, stackSize))
-        {
-            int carryOver = 0;
 
-            for (int i = 0; i < _inventory.Count; i++)
-            {
-                InventoryItem inventoryItem = _inventory[i];
 
-                if (_inventory[i].Item == item)
-                {
-                    int total = 0;
-
-                    if(carryOver == 0)
-                    {
-                        total = inventoryItem.StackSize;
-                    }
-                    else
-                    {
-                        total = carryOver;
-                    }
-
-                    total -= stackSize;
-
-                    if (total == 0)
-                    {
-                        _inventory.RemoveAt(i);
-                        break;
-                    }
-                    else
-                    {
-                        inventoryItem.StackSize -= stackSize;
-                        carryOver = total;
-                    }
-                }
-            }
-
-            GameManager.InterfaceManager.UpdateInventory(_inventory);
-        }
-    }
-
-    private bool ItemStackExists(Item checkItem)
-    {
-        foreach(InventoryItem item in _inventory)
-        {
-            if(checkItem == item.Item)
-            {
-                if(item.StackSize < checkItem.ItemMaxStack)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private bool ItemExists(Item item, int itemStack)
-    {
-        int total = 0;
-
-        foreach(InventoryItem inventoryItem in _inventory)
-        {
-            total += _inventory.Count;
-
-            if(total >= itemStack)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        //GameManager.InterfaceManager.UpdateInventory(_inventory);
     }
 }
 
@@ -149,6 +99,7 @@ public class InventoryItem
     public Item Item
     {
         get { return _item; }
+        set { _item = value; }
     }
 
     public int StackSize

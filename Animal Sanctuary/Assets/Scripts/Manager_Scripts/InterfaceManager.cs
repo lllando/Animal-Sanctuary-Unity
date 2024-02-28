@@ -9,14 +9,22 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI[] inventoryCountText;
 
-    public void UpdateInventory(List<InventoryItem> inventoryList)
+    public void UpdateInventory(InventoryItem[] inventory)
     {
         int index = 0;
 
-        foreach(InventoryItem item in inventoryList)
+        foreach(InventoryItem item in inventory)
         {
-            inventoryIcon[index].sprite = item.Item.ItemIcon;
-            inventoryCountText[index].text = item.StackSize.ToString();
+            if (item.Item != null)
+            {
+                inventoryIcon[index].sprite = item.Item.ItemIcon;
+                inventoryCountText[index].text = item.StackSize.ToString();
+            }
+            else
+            {
+                inventoryIcon[index].sprite = null;
+                inventoryCountText[index].text = "0";
+            }
 
             index++;
         }
