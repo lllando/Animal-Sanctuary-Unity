@@ -1,13 +1,22 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
 {
+    [Header("Inventory")]
+
     [SerializeField] private Image[] inventoryIcon;
 
     [SerializeField] private TextMeshProUGUI[] inventoryCountText;
+
+    [Header("Animal Screen")]
+
+    [SerializeField] private GameObject animalScreen;
+
+    [SerializeField] private TextMeshProUGUI animalNameText;
+
+    [SerializeField] private Image animalIconImage;
 
     public void UpdateInventory(InventoryItem[] inventory)
     {
@@ -28,5 +37,13 @@ public class InterfaceManager : MonoBehaviour
 
             index++;
         }
+    }
+
+    public void DisplayAnimalScreen(Animal animal) //Via Inspector (Button)
+    {
+        animalScreen.SetActive(true);
+        animalNameText.text = animal.AnimalName + " the " + animal.AnimalSpecies + " was added to your inventory!";
+        animalIconImage.sprite = animal.AnimalIcon;
+        GameManager.InventoryManager.AddItem(animal.AnimalItem, 1);
     }
 }

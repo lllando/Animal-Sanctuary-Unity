@@ -107,6 +107,21 @@ public class InventoryManager : MonoBehaviour
 
         GameManager.InterfaceManager.UpdateInventory(_inventory);
     }
+
+    public bool HasItem(Item item, int total)
+    {
+        int totalItem = 0;
+
+        foreach(InventoryItem inventoryItem in _inventory)
+        {
+            if(inventoryItem.Item == item)
+            {
+                totalItem += item.ItemCost;
+            }
+        }
+
+        return totalItem >= total;
+    }
 }
 
 public class InventoryItem
