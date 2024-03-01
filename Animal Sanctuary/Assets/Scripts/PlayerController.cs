@@ -11,10 +11,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     public float moveSpeed;
 
-    private float hInput;
-    private float vInput;
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,12 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // hInput = Input.GetAxis("Horizontal");
-        // vInput = Input.GetAxis("Vertical");
-
         move.x = joystick.Horizontal;
         move.y = joystick.Vertical;
-        // rb.velocity = new Vector2(hInput * moveSpeed, vInput * moveSpeed)
+
+        if (move.x != 0 || move.y != 0)
+        {
+        }
     }
 
     private void FixedUpdate()
