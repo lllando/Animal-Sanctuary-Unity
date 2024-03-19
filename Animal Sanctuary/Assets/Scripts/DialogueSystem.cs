@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 { 
@@ -95,6 +96,10 @@ public class DialogueSystem : MonoBehaviour
     };
 
     public TMPro.TextMeshProUGUI dialogueText;
+    public Image speakerImage;
+    public Sprite leoSprite;
+    public Sprite ellaSprite;
+
     public int currentDialogueIndex = -1;
 
     public void NextDialogueInSequence(Dictionary<Characters, string> dialogue)
@@ -106,6 +111,17 @@ public class DialogueSystem : MonoBehaviour
     {
         currentDialogueIndex++;
         dialogueText.text = introductionDialogueText[currentDialogueIndex];
+
+        Debug.Log("d" + currentDialogueIndex);
+        Debug.Log("s" + introductionDialogue.Length);
+        if (introductionDialogue[currentDialogueIndex-1].speaker == Characters.Leo)
+        {
+            speakerImage.sprite = leoSprite;
+        }
+        else if (introductionDialogue[currentDialogueIndex].speaker == Characters.Ella)
+        {
+            speakerImage.sprite = ellaSprite;
+        }
     }
 
     private void Start()
@@ -114,6 +130,7 @@ public class DialogueSystem : MonoBehaviour
             Debug.LogError($"Speaker and amount of dialogues do not match. Speakers: {introductionDialogueSpeaker.Length} Dialogue: {introductionDialogueText.Length} ");
 
         introductionDialogue = new Dialogue[introductionDialogue.Length];
+        Debug.Log("init of size " + introductionDialogue);
 
         for (int i = 0; i < introductionDialogue.Length; i++)
         {
