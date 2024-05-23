@@ -5,11 +5,21 @@ public class GameManager : MonoBehaviour
     public static InventoryManager InventoryManager;
     public static InterfaceManager InterfaceManager;
     public static Camera MainCamera;
+
+    public static DialogueManager DialogueManager;
+    public static ResourceManager ResourceManager;
+
+
+    public static Transform PlayerTransform;
      
     private void Awake()
     {
         InventoryManager = this.GetComponent<InventoryManager>();
         InterfaceManager = this.GetComponent<InterfaceManager>();
+        DialogueManager = this.GetComponent<DialogueManager>();
+        ResourceManager = this.GetComponent<ResourceManager>();
+
+        PlayerTransform = GameObject.Find("Player").transform;
 
         MainCamera = Camera.main;
     }
@@ -33,7 +43,6 @@ public class GameManager : MonoBehaviour
             if(hit.collider.TryGetComponent(out Interactive component))
             {
                 component.Interact();
-                Destroy(hit.collider.gameObject);
             }
 
             Debug.Log("Mouse detected an object");

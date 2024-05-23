@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67af2b5d46349ac45b41419ea6a97dad
+guid: 0159e35ef19c83248857aef97699c138
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - FFF Forward
+  - PoetsenOne
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

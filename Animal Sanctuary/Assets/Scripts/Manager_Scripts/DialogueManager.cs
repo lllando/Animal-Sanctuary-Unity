@@ -16,9 +16,13 @@ public class DialogueManager : MonoBehaviour
 
     [Header("User Dialogue Display")]
 
+    [SerializeField] private GameObject dialogueCanvas;
+
     [SerializeField] private GameObject dialogueDisplay;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private TextMeshProUGUI characterNameText;
 
     [SerializeField] private Button continueDialogueButton;
 
@@ -36,6 +40,8 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
+
+        dialogueCanvas.SetActive(true);
 
         dialogueActive = true;
 
@@ -127,34 +133,13 @@ public class DialogueManager : MonoBehaviour
                 }
 
                 string dialogue = dialogueLine.Substring(startIndex);
-                string finalDialogue = "";
 
-                //We also need to remove the @ animation trigger and activate the animation using it
-                for (int i = 0; i < dialogue.Length; i++)
-                {
-                    if (dialogue[i] == '@')
-                    {
-                        string animationTrigger = dialogue.Substring(i + 1);
+                characterNameText.text = name;
 
-                        break;
-                    }
-                    else
-                    {
-                        finalDialogue += dialogue[i];
-                    }
-                }
+                Debug.Log(name + ":" + dialogue);
 
-                Debug.Log(name + ":" + finalDialogue);
-
-                if (name == "User")
-                {
-                    dialogueDisplay.SetActive(true);
-                    dialogueText.text = finalDialogue;
-                }
-                else
-                {
-                    dialogueDisplay.SetActive(false);
-                }
+                dialogueDisplay.SetActive(true);
+                dialogueText.text = dialogue;
 
                 continueDialogueButton.interactable = true;
             }
@@ -169,16 +154,13 @@ public class DialogueManager : MonoBehaviour
 
         dialogueActive = false;
 
-        if (_dialogueInteractive.DialogueCamera != null)
-        {
-            _dialogueInteractive.DialogueCamera.SetActive(false);
-        }
-
         dialogueDisplay.SetActive(false);
 
         _dialogueInteractive = null;
 
         continueDialogueButton.gameObject.SetActive(false);
+
+        dialogueCanvas.SetActive(false);
 
         _dialogueLines = new string[0];
         _dialogueIndex = 0;
@@ -214,7 +196,6 @@ public class DialogueManager : MonoBehaviour
         optionsInterface.SetActive(true);
 
         continueDialogueButton.interactable = false;
-        dialogueDisplay.SetActive(false);
 
         for (int i = 0; i < optionTextArray.Length; i++)
         {

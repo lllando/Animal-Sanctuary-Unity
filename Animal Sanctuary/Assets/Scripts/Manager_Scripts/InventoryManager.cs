@@ -1,30 +1,19 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private Item itemTest;
-
     private InventoryItem[] _inventory = new InventoryItem[12];
+
+    public InventoryItem[] Inventory
+    {
+        get { return _inventory; }
+    }
 
     private void Awake()
     {
         for(int i = 0; i < 12; i++)
         {
             _inventory[i] = new InventoryItem(null, 0);
-        }
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            AddItem(itemTest, 1);
-        }
-
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            RemoveItem(itemTest, 1);
         }
     }
 
@@ -38,7 +27,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     Debug.Log("An item exists! And there is space!");
                     inventoryItem.StackSize += stackSize;
-                    GameManager.InterfaceManager.UpdateInventory(_inventory);
+                    GameManager.InterfaceManager.UpdateInventory();
                     return;
                 }
                 else
@@ -62,7 +51,7 @@ public class InventoryManager : MonoBehaviour
                 check.Item = item;
                 check.StackSize = stackSize;
                 Debug.Log("An inventory slot was free, so we added an item!");
-                GameManager.InterfaceManager.UpdateInventory(_inventory);
+                GameManager.InterfaceManager.UpdateInventory();
                 return;
             }
         }
@@ -105,7 +94,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("The items/number of items did not exist in the inventory");
         }
 
-        GameManager.InterfaceManager.UpdateInventory(_inventory);
+        GameManager.InterfaceManager.UpdateInventory();
     }
 
     public bool HasItem(Item item, int total)

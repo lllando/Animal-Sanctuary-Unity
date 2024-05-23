@@ -1,19 +1,19 @@
-Sophia: Hello, welcome to the gallery!@Wave
-Sophia: Are you here for the free tour?@Talking_0
+Sophia: Hello, welcome to the gallery!
+Sophia: Are you here for the free tour?
 *Yes*No*What is the tour for?
 
 /Yes/
-Sophia: Great!@Talking_3
+Sophia: Great!
 Sophia: Please follow me when you are ready.
-/0
+/
 
 /No/
-Sophia: No problem.@Talking_2
+Sophia: No problem.
 Sophia: Please enjoy the gallery!
-/1
+/
 
 /What is the tour for?/
-Sophia: Today, the gallery is offering tours for some of our most exciting artefacts.@Talking_0
+Sophia: Today, the gallery is offering tours for some of our most exciting artefacts.
 Sophia: The gallery stores many replicas of famous art pieces and intruiging paintings.
-Sophia: Would you be interested? I can start the tour right away.@Talking_2
+Sophia: Would you be interested? I can start the tour right away.
 *Yes*No

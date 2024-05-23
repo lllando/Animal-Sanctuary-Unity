@@ -11,6 +11,8 @@ public class Item : ScriptableObject
 
     [SerializeField] private int itemMaxStack = 1;
 
+    [SerializeField] private Vector3 itemScale;
+
     public string ItemName
     {
         get { return itemName; }
@@ -29,5 +31,10 @@ public class Item : ScriptableObject
     public int ItemMaxStack
     {
         get { return itemMaxStack; }
+    }
+
+    public Vector3 ItemScale
+    {
+        get { return itemScale; }
     }
 }

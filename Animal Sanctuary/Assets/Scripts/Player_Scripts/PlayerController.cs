@@ -4,31 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public FixedJoystick joystick;
+    [SerializeField] private float movementSpeed;
+    private Rigidbody2D _playerRb;
 
-    private Rigidbody2D rb;
-
-    private Vector2 move;
-    public float moveSpeed;
-
-    private void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-            
-    }
-
-    private void Update()
-    {
-        move.x = joystick.Horizontal;
-        move.y = joystick.Vertical;
-
-        if (move.x != 0 || move.y != 0)
-        {
-        }
+        _playerRb = this.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        _playerRb.MovePosition(_playerRb.position + InputManager.MovementInput * movementSpeed * Time.fixedDeltaTime);
+        Debug.Log(InputManager.MovementInput);
     }
 }
