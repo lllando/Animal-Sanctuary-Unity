@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Animal", menuName = "ScriptableObjects/Animal", order = 2)]
 public class Animal : ScriptableObject
 {
-    [SerializeField] private string animalName;
+    [SerializeField] private string animalDescription;
 
     [SerializeField] private string animalSpecies;
 
@@ -12,9 +12,13 @@ public class Animal : ScriptableObject
 
     [SerializeField] private Sprite animalIcon;
 
-    public string AnimalName
+    [SerializeField] private Sprite animalImage;
+
+    [SerializeField] private string[] animalFactArray;
+
+    public string AnimalDescription
     {
-        get { return animalName; }
+        get { return animalDescription; }
     }
 
     public string AnimalSpecies
@@ -30,5 +34,15 @@ public class Animal : ScriptableObject
     public Sprite AnimalIcon
     {
         get { return animalIcon; }
+    }
+
+    public Sprite AnimalImage
+    {
+        get { return animalImage; }
+    }
+
+    public string[] AnimalFactArray
+    {
+        get { return animalFactArray; }
     }
 }

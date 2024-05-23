@@ -27,9 +27,11 @@ public class InterfaceManager : MonoBehaviour
 
     [Header("Animal Display")]
 
+    [SerializeField] private GameObject animalSelectObj;
+
     [SerializeField] private GameObject animalDisplayObj;
 
-    [SerializeField] private Image animalIcon;
+    [SerializeField] private Image animalImage;
 
     [SerializeField] private TextMeshProUGUI animalNameDisplayText;
 
@@ -48,7 +50,20 @@ public class InterfaceManager : MonoBehaviour
 
     public void DisplayAnimalInformation(Animal animal)
     {
+        animalSelectObj.SetActive(false);
         animalDisplayObj.SetActive(true);
+
+        animalNameDisplayText.text = animal.name;
+        animalDescriptionText.text = animal.AnimalDescription;
+
+        for (int i = 0; i < animal.AnimalFactArray.Length; i++)
+        {
+            animalFactTextArray[i].text = animal.AnimalFactArray[i];
+        }
+
+        animalImage.sprite = animal.AnimalImage;
+        animalImage.SetNativeSize();
+        GameManager.InventoryManager.AddItem(animal.AnimalItem, 1);
     }
 
     public void UpdateInventory()
@@ -79,8 +94,6 @@ public class InterfaceManager : MonoBehaviour
     public void DisplayAnimalScreen(Animal animal) //Via Inspector (Button)
     {
         animalScreen.SetActive(true);
-        animalNameText.text = animal.AnimalName + " the " + animal.AnimalSpecies + " was added to your inventory!";
-        animalIconImage.sprite = animal.AnimalIcon;
-        GameManager.InventoryManager.AddItem(animal.AnimalItem, 1);
+        animalNameText.text = animal.name + " the " + animal.AnimalSpecies + " was added to your inventory!";
     }
 }
