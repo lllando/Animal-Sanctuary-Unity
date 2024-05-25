@@ -39,6 +39,22 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI[] animalFactTextArray;
 
+    [Header("Habitat Build Screen")]
+
+    [SerializeField] private GameObject habitatBuildMenuObj;
+
+    [SerializeField] private TextMeshProUGUI habitatNameText;
+
+    [SerializeField] private TextMeshProUGUI[] resourceCountTextArray;
+
+    [SerializeField] private Image[] resourceIconArray;
+
+    [SerializeField] private Button buildHabitatButton;
+
+    [Header("Habitat Menu")]
+
+    [SerializeField] private GameObject habitatMenuObj;
+
     public void DisplayAnimalSelectMenu()
     {
         for(int i = 0; i < animalArray.Length; i++)
@@ -94,6 +110,38 @@ public class InterfaceManager : MonoBehaviour
     public void DisplayAnimalScreen(Animal animal) //Via Inspector (Button)
     {
         animalScreen.SetActive(true);
-        animalNameText.text = animal.name + " the " + animal.AnimalSpecies + " was added to your inventory!";
+        animalNameText.text = animal.AnimalSpecies + " was added to your inventory!";
+        animalIconImage.sprite = animal.AnimalIcon;
+    }
+
+    public void DisplayBuildHabitatScreen(HabitatController habitatController)
+    {
+        habitatBuildMenuObj.SetActive(true);
+
+        Habitat habitat = habitatController.Habitat;
+
+        habitatNameText.text = habitat.HabitatName;
+
+        int hasResourceCount = 0;
+
+        for(int i = 0; i < habitat.ResourceRequirements.Length; i++)
+        {
+            int currentCount = GameManager.InventoryManager.GetItemCount(habitat.ResourceRequirements[i]);
+
+            resourceCountTextArray[i].text = currentCount.ToString() + "/" + habitat.ResourceCountRequirements[i].ToString();
+            resourceIconArray[i].sprite = habitat.ResourceRequirements[i].ItemIcon;
+
+            if (GameManager.InventoryManager.HasItem(habitat.ResourceRequirements[i], habitat.ResourceCountRequirements[i]))
+            {
+                hasResourceCount++;
+            }
+        }
+
+        buildHabitatButton.interactable = hasResourceCount == 3;
+    }
+
+    public void DisplayHabitatMenu(HabitatController habitatController)
+    {
+        habitatMenuObj.SetActive(true);
     }
 }

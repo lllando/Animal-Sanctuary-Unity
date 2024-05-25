@@ -45,9 +45,5 @@ public class PlayerController : MonoBehaviour
                 _playerAnimator.SetFloat("directionIndex", 3);
             }
         }
-
-        
-
-        Debug.Log(InputManager.MovementInput);
     }
 }

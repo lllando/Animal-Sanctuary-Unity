@@ -13,6 +13,10 @@ public class AnimalInteractive : MonoBehaviour, Interactive
 
     public void Interact()
     {
-        GameManager.InterfaceManager.DisplayAnimalScreen(animal);
+        if(MeasurementUtility.IsNear(this.transform.position, GameManager.PlayerTransform.position, interactDistanceThreshold))
+        {
+            GameManager.InterfaceManager.DisplayAnimalScreen(animal);
+            Debug.Log("Animal Interact!");
+        }
     }
 }

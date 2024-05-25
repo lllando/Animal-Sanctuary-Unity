@@ -111,6 +111,21 @@ public class InventoryManager : MonoBehaviour
 
         return totalItem >= total;
     }
+
+    public int GetItemCount(Item item)
+    {
+        int totalItem = 0;
+
+        foreach (InventoryItem inventoryItem in _inventory)
+        {
+            if (inventoryItem.Item == item)
+            {
+                totalItem += inventoryItem.StackSize;
+            }
+        }
+
+        return totalItem;
+    }
 }
 
 public class InventoryItem
