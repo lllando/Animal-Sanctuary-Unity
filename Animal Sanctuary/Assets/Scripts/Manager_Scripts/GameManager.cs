@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool disableInteract;
+
     public static InventoryManager InventoryManager;
     public static InterfaceManager InterfaceManager;
     public static Camera MainCamera;
@@ -9,8 +11,15 @@ public class GameManager : MonoBehaviour
     public static DialogueManager DialogueManager;
     public static ResourceManager ResourceManager;
 
+    public static HabitatManager HabitatManager;
 
     public static Transform PlayerTransform;
+
+    public bool DisableInteract
+    {
+        get { return disableInteract; }
+        set { disableInteract = value; }
+    }
      
     private void Awake()
     {
@@ -18,6 +27,7 @@ public class GameManager : MonoBehaviour
         InterfaceManager = this.GetComponent<InterfaceManager>();
         DialogueManager = this.GetComponent<DialogueManager>();
         ResourceManager = this.GetComponent<ResourceManager>();
+        HabitatManager = this.GetComponent<HabitatManager>();
 
         PlayerTransform = GameObject.Find("Player").transform;
 
@@ -26,10 +36,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(!DisableInteract)
         {
-            PlayerInteractRaycast();
-            Debug.Log("Interact");
+            if (Input.GetMouseButtonDown(0))
+            {
+                PlayerInteractRaycast();
+                Debug.Log("Interact");
+            }
         }
     }
 

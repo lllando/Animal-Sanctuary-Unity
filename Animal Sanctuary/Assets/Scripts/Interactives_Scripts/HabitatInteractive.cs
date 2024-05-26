@@ -22,11 +22,16 @@ public class HabitatInteractive : MonoBehaviour, Interactive
         {
             if(_habitatController.IsBuilt)
             {
-                GameManager.InterfaceManager.DisplayHabitatMenu(_habitatController);
+                if(!GameManager.InterfaceManager.inventoryActive)
+                {
+                    GameManager.InterfaceManager.DisplayHabitatMenu(_habitatController);
+                    GameManager.HabitatManager.FocusHabitat = _habitatController;
+                }
             }
             else
             {
                 GameManager.InterfaceManager.DisplayBuildHabitatScreen(_habitatController);
+                GameManager.HabitatManager.FocusHabitat = _habitatController;
                 Debug.Log("Habitat Interact!");
             }
         }

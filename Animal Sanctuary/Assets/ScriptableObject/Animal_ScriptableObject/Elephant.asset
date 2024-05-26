@@ -18,6 +18,8 @@ MonoBehaviour:
     family Elephantidae and the order Proboscidea; extinct relatives include mammoths
     and mastodons.'
   animalSpecies: Elephant
+  animalOrigin: Africa
+  survivalStatus: Endangered
   animalItem: {fileID: 11400000, guid: b061a038dd445574a901a14832ba14d5, type: 2}
   animalIcon: {fileID: -8283620988547500454, guid: 8a418d35d5c8ccb4a9982d08c1edef33, type: 3}
   animalImage: {fileID: 21300000, guid: 67f79b6de57c6ae42813adf26414ca66, type: 3}
@@ -28,3 +30,4 @@ MonoBehaviour:
     (some sounds are too low for people to hear), body language, touch and scent.
   - The elephant's temporal lobe (the area of the brain associated with memory) is
     larger and denser than that of people - hence the saying 'elephants never forget'.
+  spriteScale: {x: 1, y: 1, z: 1}

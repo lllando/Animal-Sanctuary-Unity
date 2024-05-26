@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,11 +6,11 @@ using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
 {
+    public bool inventoryActive;
+
     [Header("Inventory")]
 
-    [SerializeField] private Image[] inventoryIcon;
-
-    [SerializeField] private TextMeshProUGUI[] inventoryCountText;
+    [SerializeField] private InventorySlot[] inventorySlotArray;
 
     [Header("Animal Screen")]
 
@@ -55,6 +56,52 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField] private GameObject habitatMenuObj;
 
+    [SerializeField] private GameObject animalDetailsObj;
+
+    [Header("Animal Screen")]
+
+    [SerializeField] private TextMeshProUGUI animalScreenNameText;
+
+    [SerializeField] private TextMeshProUGUI animalInfoText;
+
+    [SerializeField] private Slider[] animalStatsArray;
+
+    [SerializeField] private HabitatAnimalEntry animalHabitatEntryPrefab;
+
+    [SerializeField] private Transform animalHabitatEntryTransform;
+
+    [SerializeField] private GameObject confirmAddAnimalObj;
+
+    [SerializeField] private Image animalIcon;
+
+    private List<HabitatAnimalEntry> _animalHabitatEntryList = new List<HabitatAnimalEntry>();
+
+    public bool InventoryActive
+    {
+        get { return inventoryActive; }
+        set { inventoryActive = value; }
+    }
+
+    private void Awake()
+    {
+        foreach(InventorySlot slot in inventorySlotArray)
+        {
+            slot.Initialise();
+        }
+    }
+
+    private void Update()
+    {
+        if(animalDetailsObj.activeSelf && GameManager.HabitatManager.FocusAnimal != null)
+        {
+            for (int i = 0; i < animalStatsArray.Length; i++)
+            {
+                animalStatsArray[i].maxValue = 100;
+                animalStatsArray[i].value = GameManager.HabitatManager.FocusAnimal.StatsArray[i];
+            }
+        }
+    }
+
     public void DisplayAnimalSelectMenu()
     {
         for(int i = 0; i < animalArray.Length; i++)
@@ -90,19 +137,7 @@ public class InterfaceManager : MonoBehaviour
 
         foreach(InventoryItem item in inventory)
         {
-            if (item.Item != null)
-            {
-                inventoryIcon[index].gameObject.SetActive(true);
-                inventoryIcon[index].sprite = item.Item.ItemIcon;
-                inventoryCountText[index].text = item.StackSize.ToString("00");
-            }
-            else
-            {
-                inventoryIcon[index].sprite = null;
-                inventoryIcon[index].gameObject.SetActive(false);
-                inventoryCountText[index].text = "00";
-            }
-
+            inventorySlotArray[index].AssignItem(item.Item, item.StackSize);
             index++;
         }
     }
@@ -143,5 +178,70 @@ public class InterfaceManager : MonoBehaviour
     public void DisplayHabitatMenu(HabitatController habitatController)
     {
         habitatMenuObj.SetActive(true);
+        animalDetailsObj.SetActive(habitatController.AnimalList.Count > 0);
+
+        foreach(HabitatAnimalEntry entry in _animalHabitatEntryList)
+        {
+            entry.gameObject.SetActive(false);
+        }
+
+        if(habitatController.AnimalList.Count > 0)
+        {
+            GameManager.HabitatManager.FocusAnimal = habitatController.AnimalList[0];
+            UpdateAnimalDisplay();
+
+            foreach (AnimalController controller in habitatController.AnimalList)
+            {
+                HabitatAnimalEntry habitatAnimalEntry = null;
+
+                foreach (HabitatAnimalEntry entry in _animalHabitatEntryList)
+                {
+                    if (!entry.gameObject.activeSelf)
+                    {
+                        habitatAnimalEntry = entry;
+                        habitatAnimalEntry.gameObject.SetActive(true);
+                        break;
+                    }
+                }
+
+                if (habitatAnimalEntry == null)
+                {
+                    habitatAnimalEntry = Instantiate(animalHabitatEntryPrefab, Vector3.zero, Quaternion.identity, animalHabitatEntryTransform);
+                    _animalHabitatEntryList.Add(habitatAnimalEntry);
+                }
+
+                habitatAnimalEntry.AssignHabitatAnimal(controller);
+            }
+        }
+    }
+
+    public void HideHabitatMenu() //Via Inspector (Button)
+    {
+        animalDetailsObj.SetActive(false);
+        habitatMenuObj.SetActive(false);
+        GameManager.HabitatManager.FocusHabitat = null;
+    }
+
+    public void UpdateAnimalDisplay()
+    {
+        animalDetailsObj.SetActive(true);
+
+        for (int i = 0; i < animalStatsArray.Length; i++)
+        {
+            animalStatsArray[i].maxValue = 100;
+            animalStatsArray[i].value = GameManager.HabitatManager.FocusAnimal.StatsArray[i];
+        }
+
+        animalScreenNameText.text = GameManager.HabitatManager.FocusAnimal.AnimalName;
+
+        Animal animal = GameManager.HabitatManager.FocusAnimal.AssignedAnimal;
+
+        animalInfoText.text = "Species: " + animal.AnimalSpecies + "\nOrigin: " + animal.AnimalOrigin + "\nSurvival Status: " + animal.SurvivalStatus;
+    }
+
+    public void DisplayAddHabitatAnimalConfirm(Item item)
+    {
+        confirmAddAnimalObj.SetActive(true);
+        animalIcon.sprite = item.ItemIcon;
     }
 }

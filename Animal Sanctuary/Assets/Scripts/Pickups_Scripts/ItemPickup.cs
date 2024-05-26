@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    private Item _assignedItem;
+    [SerializeField] private Item assignedItem;
 
     private SpriteRenderer _spriteRenderer;
 
     public Item AssignedItem
     {
-        get { return _assignedItem; }
-        set { _assignedItem = value; }
+        get { return assignedItem; }
+        set { assignedItem = value; }
     }
 
     public SpriteRenderer SpriteRenderer
@@ -21,7 +21,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.InventoryManager.AddItem(_assignedItem, 1);
+            GameManager.InventoryManager.AddItem(assignedItem, 1);
             this.gameObject.SetActive(false);
         }
     }

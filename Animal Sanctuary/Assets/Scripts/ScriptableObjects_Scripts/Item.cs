@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObject/Item", order = 1)]
@@ -12,6 +13,8 @@ public class Item : ScriptableObject
     [SerializeField] private int itemMaxStack = 1;
 
     [SerializeField] private Vector3 itemScale;
+
+    [SerializeField] private List<string> itemTagList;
 
     public string ItemName
     {
@@ -36,5 +39,10 @@ public class Item : ScriptableObject
     public Vector3 ItemScale
     {
         get { return itemScale; }
+    }
+
+    public List<string> ItemTagList
+    {
+        get { return itemTagList; }
     }
 }

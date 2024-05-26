@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53ef3a780e0438840980ef0fe9914c99, type: 3}
-  m_Name: Elle_Elephant_Item
+  m_Name: Elephant_Item
   m_EditorClassIdentifier: 
   itemName: Elle the Elephant
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -8283620988547500454, guid: 8a418d35d5c8ccb4a9982d08c1edef33, type: 3}
   itemCost: 4
   itemMaxStack: 1
+  itemScale: {x: 1, y: 1, z: 1}
+  itemTagList:
+  - Animal
