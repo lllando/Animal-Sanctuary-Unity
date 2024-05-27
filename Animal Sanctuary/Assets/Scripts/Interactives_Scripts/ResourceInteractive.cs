@@ -32,23 +32,25 @@ public class ResourceInteractive : MonoBehaviour, Interactive
 
     public void Interact()
     {
-        _randomInteracts--;
-
-        interactCanvas.SetActive(true);
-        interactSlider.value = _randomInteracts;
-
-        if (_randomInteracts <= 0)
+        if (MeasurementUtility.IsNear(this.transform.position, GameManager.PlayerTransform.position, interactDistanceThreshold))
         {
-            for (int i = 0; i < itemCount; i++)
+            _randomInteracts--;
+
+            interactCanvas.SetActive(true);
+            interactSlider.value = _randomInteracts;
+
+            if (_randomInteracts <= 0)
             {
-                GameManager.ResourceManager.SpawnResource(item, this.transform.position);
+                for (int i = 0; i < itemCount; i++)
+                {
+                    GameManager.ResourceManager.SpawnResource(item, this.transform.position);
+                }
+
+                interactCanvas.SetActive(false);
+
+                Destroy(this.gameObject);
             }
-
-            interactCanvas.SetActive(false);
-
-            Destroy(this.gameObject);
         }
-
     }
 }
 

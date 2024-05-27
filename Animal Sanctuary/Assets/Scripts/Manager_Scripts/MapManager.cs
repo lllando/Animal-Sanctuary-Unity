@@ -3,6 +3,9 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+    public static int MapWidth;
+    public static int MapHeight;
+
     [Header("Objects")]
 
     [SerializeField] private Tilemap topMap;
@@ -13,19 +16,24 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Tile bottomTile;
 
+    [SerializeField] private Transform resourceObjectParent;
+
+    [SerializeField] private Transform environmentObjectParent;
+
     [Header("Parameters")]
 
-    [Range(0, 100)][SerializeField] private int initialChance;
+    [SerializeField] MapParameters terrainParameters;
 
-    [Range(1, 8)][SerializeField] private int birthLimit;
+    [SerializeField] MapParameters resourceParameters;
 
-    [Range(1, 8)][SerializeField] private int deathLimit;
+    [Header("Prefabs")]
 
-    [Range(1, 10)][SerializeField] private int numR;
+    [SerializeField] private RandomPrefab[] resourcePrefabs;
 
-    private int _count;
+    [SerializeField] private RandomPrefab[] environmentPrefabs;
 
     private int[,] _terrainMap;
+
     public Vector3Int _tMapSize;
 
     private int _width;
@@ -33,6 +41,9 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
+        MapWidth = _width;
+        MapHeight = _height;
+
         GenerateMap();
     }
 
@@ -48,14 +59,15 @@ public class MapManager : MonoBehaviour
         if (_terrainMap == null)
         {
             _terrainMap = new int[_width, _height];
-            InitialisePosition();
+
+            InitialisePosition(_terrainMap, terrainParameters);
 
             Debug.Log("Intialising Position");
         }
 
-        for (int i = 0; i < numR; i++)
+        for (int i = 0; i < terrainParameters.iterations; i++)
         {
-            _terrainMap = GenerateTilePosition(_terrainMap);
+            _terrainMap = GenerateTilePosition(_terrainMap, terrainParameters);
         }
 
         for (int x = 0; x < _width; x++)
@@ -64,8 +76,43 @@ public class MapManager : MonoBehaviour
             {
                 if (_terrainMap[x, y] == 1)
                 {
-                    topMap.SetTile(new Vector3Int(-x + _width / 2, -y + _height / 2, 0), topTile);
+                    Vector3Int position = new Vector3Int(-x + _width / 2, -y + _height / 2, 0);
+
+                    topMap.SetTile(position, topTile);
                     Debug.Log("Tile Assigned");
+
+                    Bounds bounds = GameManager.PlayerController.mapBounds;
+
+                    if(position.x > bounds.min.x && position.y > bounds.min.y && position.x < bounds.max.x && position.y < bounds.max.y)
+                    {
+                        bool resourceSpawned = false;
+
+                        for (int i = 0; i < resourcePrefabs.Length; i++)
+                        {
+                            float random = Random.Range(0, 500);
+
+                            if (resourcePrefabs[i].rarityThreshold >= random)
+                            {
+                                Instantiate(resourcePrefabs[i].prefab, position, Quaternion.identity, resourceObjectParent);
+                                resourceSpawned = true;
+                                break;
+                            }
+                        }
+
+                        if (!resourceSpawned)
+                        {
+                            for (int i = 0; i < environmentPrefabs.Length; i++)
+                            {
+                                float random = Random.Range(0, 200);
+
+                                if (environmentPrefabs[i].rarityThreshold >= random)
+                                {
+                                    Instantiate(environmentPrefabs[i].prefab, position, Quaternion.identity, environmentObjectParent);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -76,7 +123,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private int[,] GenerateTilePosition(int[,] oldMap)
+    private int[,] GenerateTilePosition(int[,] oldMap, MapParameters mapParams)
     {
         int[,] newMap = new int[_width, _height];
 
@@ -108,7 +155,7 @@ public class MapManager : MonoBehaviour
 
                 if (oldMap[x, y] == 1)
                 {
-                    if (neighbour < deathLimit)
+                    if (neighbour < mapParams.deathLimit)
                     {
                         newMap[x, y] = 0;
                     }
@@ -120,7 +167,7 @@ public class MapManager : MonoBehaviour
 
                 if (oldMap[x, y] == 0)
                 {
-                    if (neighbour > birthLimit)
+                    if (neighbour > mapParams.birthLimit)
                     {
                         newMap[x, y] = 1;
                     }
@@ -135,21 +182,21 @@ public class MapManager : MonoBehaviour
         return newMap;
     }
 
-    private void InitialisePosition()
+    private void InitialisePosition(int[,] tileMap, MapParameters mapParams)
     {
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
-                _terrainMap[x, y] = Random.Range(1, 101);
+                tileMap[x, y] = Random.Range(1, 101);
 
-                if (_terrainMap[x, y] < initialChance)
+                if (tileMap[x, y] < mapParams.initialChance)
                 {
-                    _terrainMap[x, y] = 1;
+                    tileMap[x, y] = 1;
                 }
                 else
                 {
-                    _terrainMap[x, y] = 0;
+                    tileMap[x, y] = 0;
                 }
             }
         }
@@ -165,5 +212,24 @@ public class MapManager : MonoBehaviour
             _terrainMap = null;
         }
     }
+}
 
+[System.Serializable]
+public struct MapParameters
+{
+    [Range(0, 100)] public int initialChance;
+
+    [Range(1, 8)] public int birthLimit;
+
+    [Range(1, 8)] public int deathLimit;
+
+    [Range(1, 10)] public int iterations;
+}
+
+[System.Serializable]
+public struct RandomPrefab
+{
+    public Transform prefab;
+
+    [Range(0, 101)] public int rarityThreshold;
 }

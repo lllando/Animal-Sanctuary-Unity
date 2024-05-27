@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public static HabitatManager HabitatManager;
 
+    public static PlayerController PlayerController;
     public static Transform PlayerTransform;
 
     public bool DisableInteract
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
         ResourceManager = this.GetComponent<ResourceManager>();
         HabitatManager = this.GetComponent<HabitatManager>();
 
-        PlayerTransform = GameObject.Find("Player").transform;
+        PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        PlayerTransform = PlayerController.transform;
 
         MainCamera = Camera.main;
     }

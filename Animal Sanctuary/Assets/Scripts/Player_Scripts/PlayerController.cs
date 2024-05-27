@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Bounds mapBounds;
+
     [SerializeField] private float movementSpeed;
 
     private Rigidbody2D _playerRb;
@@ -45,5 +45,10 @@ public class PlayerController : MonoBehaviour
                 _playerAnimator.SetFloat("directionIndex", 3);
             }
         }
+
+        float clampX = Mathf.Clamp(this.transform.position.x, mapBounds.min.x, mapBounds.max.x);
+        float clampY = Mathf.Clamp(this.transform.position.y, mapBounds.min.y, mapBounds.max.y);
+
+        this.transform.position = new Vector3(clampX, clampY, 0);
     }
 }
