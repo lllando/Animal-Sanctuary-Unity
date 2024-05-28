@@ -4,9 +4,16 @@ public class InventoryManager : MonoBehaviour
 {
     public Item[] itemArray;
 
+    public Item coinItem;
+
     public InventoryItem[] Inventory
     {
         get { return GameManager.SaveManager.inventory; }
+    }
+
+    public int Coins
+    {
+        get { return GetItemCount(coinItem); }
     }
 
     public void AddItem(Item item, int stackSize)
@@ -118,14 +125,19 @@ public class InventoryManager : MonoBehaviour
 
         return totalItem;
     }
+
+    public void BuyItem()
+    {
+
+    }
 }
 
 [System.Serializable]
 public class InventoryItem
 {
-    private Item _item;
+    [SerializeField] private Item _item;
 
-    private int _stackSize;
+    [SerializeField] private int _stackSize;
 
     public Item Item
     {

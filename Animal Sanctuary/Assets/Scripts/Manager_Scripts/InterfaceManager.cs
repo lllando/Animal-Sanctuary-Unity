@@ -3,10 +3,11 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InterfaceManager : MonoBehaviour
 {
-    public enum ItemInteraction { None, Animal, Food, Water, Medicine }
+    public enum ItemInteraction { None, Animal, Food, Water, Medicine, Sell }
 
     public static ItemInteraction ActiveItemInteraction;
 
@@ -264,5 +265,82 @@ public class InterfaceManager : MonoBehaviour
     {
         ActiveItemInteraction = (ItemInteraction)index;
         inventoryActive = index != 0;
+    }
+
+    [Header("Shop Menu")]
+
+    [SerializeField] private GameObject shopCanvasObj;
+
+    [SerializeField] private GameObject buyPanelObj;
+
+    [SerializeField] private TextMeshProUGUI coinText;
+
+    [SerializeField] private TextMeshProUGUI itemNameText;
+
+    [SerializeField] private Image itemIcon;
+
+    [SerializeField] private Slider itemSlider;
+
+    [SerializeField] private TextMeshProUGUI itemCountText;
+
+    [SerializeField] private Button buyButton;
+
+    [SerializeField] private TraderSlot[] traderSlotArray;
+
+    [SerializeField] private TextMeshProUGUI costText;
+
+    [SerializeField] private TextMeshProUGUI totalCoinsText;
+
+    public int ItemCount
+    {
+        get { return (int)itemSlider.value; }
+    }
+
+    public void DisplayShop(InventoryItem[] shopInventory)
+    {
+        shopCanvasObj.SetActive(true);
+        coinText.text = GameManager.InventoryManager.GetItemCount(GameManager.InventoryManager.coinItem).ToString();
+
+        //Update Shop Inventory
+
+        int index = 0;
+
+        foreach(TraderSlot slot in traderSlotArray)
+        {
+            slot.AssignItem(shopInventory[index].Item, shopInventory[index].StackSize);
+            index++;
+        }
+    }
+
+    public void DisplayBuyItem(Item item, int stackSize)
+    {
+        buyPanelObj.SetActive(true);
+
+        itemNameText.text = item.ItemName;
+        itemIcon.sprite = item.ItemIcon;
+
+        itemSlider.maxValue = stackSize;
+        itemSlider.value = 1;
+
+        itemCountText.text = "1";
+
+        costText.text = "COST: " + item.ItemCost.ToString();
+        totalCoinsText.text = "COINS: " + GameManager.InventoryManager.Coins.ToString();
+
+        BuyItemSliderUpdate();
+    }
+
+    public void BuyItemSliderUpdate() //Via Inspector (Slider)
+    {
+        Item item = GameManager.ShopManager.focusItem;
+        int individualCost = item.ItemCost;
+        float totalCost = individualCost * itemSlider.value;
+
+        costText.text = "COST: " + (item.ItemCost * itemSlider.value).ToString();
+        totalCoinsText.text = "COINS: " + GameManager.InventoryManager.Coins.ToString();
+
+        itemCountText.text = itemSlider.value.ToString();
+
+        buyButton.interactable = totalCost <= GameManager.InventoryManager.Coins;
     }
 }

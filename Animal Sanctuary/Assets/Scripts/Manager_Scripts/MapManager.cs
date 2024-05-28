@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -12,7 +13,7 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Tilemap bottomMap;
 
-    [SerializeField] private Tile topTile;
+    [SerializeField] private RandomTile[] randomTileArray;
 
     [SerializeField] private Tile bottomTile;
 
@@ -80,7 +81,38 @@ public class MapManager : MonoBehaviour
                 {
                     Vector3Int position = new Vector3Int(-x + _width / 2, -y + _height / 2, 0);
 
-                    topMap.SetTile(position, topTile);
+                    List<int> tileDif = new List<int>();
+                    List<int> tileIndex = new List<int>();
+
+                    int index = 0;
+
+                    foreach(RandomTile tile in randomTileArray)
+                    {
+                        System.Random rand = new System.Random();
+                        int randNum = rand.Next(0, 10000);
+
+                        if(tile.rarityThreshold >= randNum)
+                        {
+                            tileDif.Add(tile.rarityThreshold - randNum);
+                            tileIndex.Add(index);
+                        }
+
+                        index++;
+                    }
+
+                    int minIndex = 0;
+                    int minDif = int.MaxValue;
+
+                    for (int i = 0; i < tileDif.Count; i++)
+                    {
+                        if (tileDif[i] < minDif)
+                        {
+                            minIndex = tileIndex[i];
+                            minDif = tileDif[i];
+                        }
+                    }
+
+                    topMap.SetTile(position, randomTileArray[minIndex].tile);
                     Debug.Log("Tile Assigned");
 
                     Bounds bounds = GameManager.PlayerController.mapBounds;
@@ -249,6 +281,14 @@ public struct MapParameters
 public struct RandomPrefab
 {
     public Transform prefab;
+
+    [Range(0, 101)] public int rarityThreshold;
+}
+
+[System.Serializable]
+public struct RandomTile
+{
+    public Tile tile;
 
     [Range(0, 101)] public int rarityThreshold;
 }
