@@ -26,4 +26,11 @@ public class ShopManager : MonoBehaviour
 
         focusTrader.RemoveItem(focusItem, itemCount);
     }
+
+    public void SellItem(Item item)
+    {
+        GameManager.InventoryManager.AddItem(GameManager.InventoryManager.coinItem, item.ItemCost / 2);
+        GameManager.InventoryManager.RemoveItem(item, 1);
+        GameManager.InterfaceManager.UpdateInventory();
+    }
 }

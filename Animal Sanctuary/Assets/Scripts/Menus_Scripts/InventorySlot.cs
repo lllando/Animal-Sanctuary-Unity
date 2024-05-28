@@ -23,7 +23,12 @@ public class InventorySlot : MonoBehaviour
 
     private void OnInventorySlotClick()
     {
-        switch(InterfaceManager.ActiveItemInteraction)
+        if (_assignedItem == null)
+        {
+            return;
+        }
+
+        switch (InterfaceManager.ActiveItemInteraction)
         {
             case InterfaceManager.ItemInteraction.Animal:
 
@@ -56,6 +61,11 @@ public class InventorySlot : MonoBehaviour
                     GameManager.HabitatManager.UpdateAnimalStatistic(2, _assignedItem);
                 }
                 
+                break;
+            case InterfaceManager.ItemInteraction.Sell:
+
+                GameManager.ShopManager.SellItem(_assignedItem);
+
                 break;
         }
     }
