@@ -12,6 +12,7 @@ public class AnimalController : MonoBehaviour
     public string AnimalName
     {
         get { return _animalName; }
+        set { _animalName = value; }
     }
 
     public Animal AssignedAnimal
@@ -41,7 +42,7 @@ public class AnimalController : MonoBehaviour
     {
         for(int i = 0; i < _statsArray.Length; i++)
         {
-            _statsArray[i] -= Time.deltaTime * 0.01f;
+            _statsArray[i] -= Time.deltaTime * 0.1f;
         }
     }
 

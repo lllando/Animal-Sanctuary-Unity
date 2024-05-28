@@ -23,7 +23,41 @@ public class InventorySlot : MonoBehaviour
 
     private void OnInventorySlotClick()
     {
-        GameManager.HabitatManager.AnimalSelectInventoryCheck(_assignedItem);
+        switch(InterfaceManager.ActiveItemInteraction)
+        {
+            case InterfaceManager.ItemInteraction.Animal:
+
+                if(_assignedItem.ItemTagList.Contains("Animal"))
+                {
+                    GameManager.HabitatManager.AnimalSelectInventoryCheck(_assignedItem);
+                }
+                
+                break;
+            case InterfaceManager.ItemInteraction.Food:
+
+                if(_assignedItem.ItemTagList.Contains("Food"))
+                {
+                    GameManager.HabitatManager.UpdateAnimalStatistic(0, _assignedItem);
+                }
+               
+                break;
+            case InterfaceManager.ItemInteraction.Water:
+
+                if(_assignedItem.ItemTagList.Contains("Water"))
+                {
+                    GameManager.HabitatManager.UpdateAnimalStatistic(1, _assignedItem);
+                }
+                
+                break;
+            case InterfaceManager.ItemInteraction.Medicine:
+
+                if(_assignedItem.ItemTagList.Contains("Medicine"))
+                {
+                    GameManager.HabitatManager.UpdateAnimalStatistic(2, _assignedItem);
+                }
+                
+                break;
+        }
     }
 
     public void AssignItem(Item item, int stackSize)

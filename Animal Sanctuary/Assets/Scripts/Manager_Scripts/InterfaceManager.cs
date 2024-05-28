@@ -6,7 +6,13 @@ using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
 {
+    public enum ItemInteraction { None, Animal, Food, Water, Medicine }
+
+    public static ItemInteraction ActiveItemInteraction;
+
     public bool inventoryActive;
+
+    public TMP_InputField animalNameInputField;
 
     [Header("Inventory")]
 
@@ -60,8 +66,6 @@ public class InterfaceManager : MonoBehaviour
 
     [Header("Animal Screen")]
 
-    [SerializeField] private TextMeshProUGUI animalScreenNameText;
-
     [SerializeField] private TextMeshProUGUI animalInfoText;
 
     [SerializeField] private Slider[] animalStatsArray;
@@ -73,6 +77,10 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField] private GameObject confirmAddAnimalObj;
 
     [SerializeField] private Image animalIcon;
+
+    [Header("Confirm")]
+
+    [SerializeField] private GameObject confirmCanvas;
 
     private List<HabitatAnimalEntry> _animalHabitatEntryList = new List<HabitatAnimalEntry>();
 
@@ -147,6 +155,7 @@ public class InterfaceManager : MonoBehaviour
         animalScreen.SetActive(true);
         animalNameText.text = animal.AnimalSpecies + " was added to your inventory!";
         animalIconImage.sprite = animal.AnimalIcon;
+        GameManager.InventoryManager.AddItem(animal.AnimalItem, 1);
     }
 
     public void DisplayBuildHabitatScreen(HabitatController habitatController)
@@ -232,7 +241,7 @@ public class InterfaceManager : MonoBehaviour
             animalStatsArray[i].value = GameManager.HabitatManager.FocusAnimal.StatsArray[i];
         }
 
-        animalScreenNameText.text = GameManager.HabitatManager.FocusAnimal.AnimalName;
+        animalNameInputField.text = GameManager.HabitatManager.FocusAnimal.AnimalName;
 
         Animal animal = GameManager.HabitatManager.FocusAnimal.AssignedAnimal;
 
@@ -243,5 +252,17 @@ public class InterfaceManager : MonoBehaviour
     {
         confirmAddAnimalObj.SetActive(true);
         animalIcon.sprite = item.ItemIcon;
+    }
+
+    public void DisplayConfirmCanvas()
+    {
+        confirmCanvas.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void SetInventoryInteraction(int index) //Via Inspector (Button)
+    {
+        ActiveItemInteraction = (ItemInteraction)index;
+        inventoryActive = index != 0;
     }
 }

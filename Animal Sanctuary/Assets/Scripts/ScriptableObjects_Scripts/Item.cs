@@ -14,6 +14,8 @@ public class Item : ScriptableObject
 
     [SerializeField] private Vector3 itemScale;
 
+    [SerializeField] private int itemUseIncrease;
+
     [SerializeField] private List<string> itemTagList;
 
     public string ItemName
@@ -39,6 +41,11 @@ public class Item : ScriptableObject
     public Vector3 ItemScale
     {
         get { return itemScale; }
+    }
+
+    public int ItemUseIncrease
+    {
+        get { return itemUseIncrease; }
     }
 
     public List<string> ItemTagList

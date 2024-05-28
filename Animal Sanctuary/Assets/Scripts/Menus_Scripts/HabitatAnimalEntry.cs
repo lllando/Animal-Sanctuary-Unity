@@ -25,7 +25,7 @@ public class HabitatAnimalEntry : MonoBehaviour
     {
         Animal animal = animalController.AssignedAnimal;
         _animalIcon.sprite = animal.AnimalIcon;
-        _animalNameText.text = animal.name;
+        _animalNameText.text = animalController.AnimalName;
         _assignedAnimal = animalController;
     }
 

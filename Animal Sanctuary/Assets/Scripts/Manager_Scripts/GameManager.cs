@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +47,16 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Interact");
             }
         }
+    }
+
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void ReturnTimeScale()
+    {
+        Time.timeScale = 1;
     }
 
     private void PlayerInteractRaycast()

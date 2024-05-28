@@ -4,6 +4,8 @@ public class HabitatManager : MonoBehaviour
 {
     [SerializeField] private Animal[] animalArray;
 
+    [SerializeField] private string[] randomNames;
+
     [Header("Animal Controllers")]
 
     [SerializeField] private AnimalController animalControllerPrefab;
@@ -70,6 +72,8 @@ public class HabitatManager : MonoBehaviour
 
                 GameManager.InventoryManager.RemoveItem(_potentialNewAnimal, 1);
 
+                controller.AnimalName = randomNames[Random.Range(0, randomNames.Length)];
+
                 controller.AssignAnimal(animal);
 
                 _potentialNewAnimal = null;
@@ -112,5 +116,28 @@ public class HabitatManager : MonoBehaviour
     {
         _focusHabitat = null;
         _focusAnimal = null;
+    }
+
+    public void UpdateAnimalStatistic(int index, Item item)
+    {
+        _focusAnimal.StatsArray[index] += item.ItemUseIncrease;
+
+        if (_focusAnimal.StatsArray[index] > 100)
+        {
+            _focusAnimal.StatsArray[index] = 100;
+        }
+
+        GameManager.InventoryManager.RemoveItem(item, 1);
+    }
+
+    public void UpdateAnimalName()
+    {
+        if(_focusAnimal != null && _focusHabitat != null)
+        {
+            _focusAnimal.AnimalName = GameManager.InterfaceManager.animalNameInputField.text;
+            GameManager.InterfaceManager.DisplayHabitatMenu(_focusHabitat);
+            GameManager.InterfaceManager.UpdateAnimalDisplay();
+            Debug.Log("Animal Name Updated!");
+        }
     }
 }
