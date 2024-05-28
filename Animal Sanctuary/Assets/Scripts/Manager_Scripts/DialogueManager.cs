@@ -26,6 +26,10 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private Button continueDialogueButton;
 
+    [SerializeField] private DialogueNPC[] dialogueNpcArray;
+
+    [SerializeField] private Image speakerIcon;
+
     private DialogueInteractive _dialogueInteractive;
 
     private string[] _dialogueLines = new string[0];
@@ -136,6 +140,14 @@ public class DialogueManager : MonoBehaviour
 
                 characterNameText.text = name;
 
+                for(int i = 0; i < dialogueNpcArray.Length; i++)
+                {
+                    if (dialogueNpcArray[i].npcName == name)
+                    {
+                        speakerIcon.sprite = dialogueNpcArray[i].npcSprite;
+                    }
+                }
+
                 Debug.Log(name + ":" + dialogue);
 
                 dialogueDisplay.SetActive(true);
@@ -209,4 +221,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public struct DialogueNPC
+{
+    public string npcName;
+
+    public Sprite npcSprite;
 }

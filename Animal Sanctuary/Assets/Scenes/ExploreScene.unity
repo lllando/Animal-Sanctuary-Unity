@@ -19682,7 +19682,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1629688949218157864}
@@ -19728,7 +19728,7 @@ SpriteRenderer:
   m_SortingLayerID: 231795141
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8793639957104055765, guid: d7740ffd80ba49342941b8f06dad3cda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a67d0c5504cbee408cc383f9621e90c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22141,14 +22141,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemArray:
-  - {fileID: 11400000, guid: b061a038dd445574a901a14832ba14d5, type: 2}
-  - {fileID: 11400000, guid: 00f1a227474ed784cb021d4aaff0a2e6, type: 2}
-  - {fileID: 11400000, guid: 95a4b217b45cf3f498e034656f89f52a, type: 2}
-  - {fileID: 11400000, guid: f491229b21d47f146afa1d9119ba7ab3, type: 2}
-  - {fileID: 11400000, guid: 1856af4b8dd4e3a4f9080b5ef30c9afe, type: 2}
-  - {fileID: 11400000, guid: 7de862a3e2247014092e9dc449535e2c, type: 2}
+  - {fileID: 11400000, guid: ea3a57cf75e6fc4468a4afd745b345de, type: 2}
+  - {fileID: 11400000, guid: 3bf0d3448b5f8eb4e8a7e6b976769b81, type: 2}
+  - {fileID: 11400000, guid: 2ce3990ab84d9ff4ebd612762f6bdfc6, type: 2}
+  - {fileID: 11400000, guid: 9eb7576485d0df749a83303bd348a4a8, type: 2}
+  - {fileID: 11400000, guid: d35e7b73628686448b1f48c4a3ffd0d8, type: 2}
   - {fileID: 11400000, guid: 6566d02308f834841bc90735db09dcbb, type: 2}
+  - {fileID: 11400000, guid: b061a038dd445574a901a14832ba14d5, type: 2}
+  - {fileID: 11400000, guid: 95a4b217b45cf3f498e034656f89f52a, type: 2}
+  - {fileID: 11400000, guid: 7de862a3e2247014092e9dc449535e2c, type: 2}
   - {fileID: 11400000, guid: 71caa7931d28c5244a7a38e4af17d19d, type: 2}
+  - {fileID: 11400000, guid: 3aa95daf59d1bd4439e4b756ec5d57aa, type: 2}
+  - {fileID: 11400000, guid: ae2c473258be9494ea30e64c5ab034e8, type: 2}
+  coinItem: {fileID: 11400000, guid: ae2c473258be9494ea30e64c5ab034e8, type: 2}
 --- !u!114 &1861539634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22285,6 +22290,17 @@ MonoBehaviour:
   confirmAddAnimalObj: {fileID: 576554055}
   animalIcon: {fileID: 1289239859}
   confirmCanvas: {fileID: 325446361}
+  shopCanvasObj: {fileID: 0}
+  buyPanelObj: {fileID: 0}
+  coinText: {fileID: 0}
+  itemNameText: {fileID: 0}
+  itemIcon: {fileID: 0}
+  itemSlider: {fileID: 0}
+  itemCountText: {fileID: 0}
+  buyButton: {fileID: 0}
+  traderSlotArray: []
+  costText: {fileID: 0}
+  totalCoinsText: {fileID: 0}
 --- !u!114 &1861539637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25894,7 +25910,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.0038535}
+  m_Offset: {x: 0, y: -0.19297063}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -25904,7 +25920,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.4307526}
+  m_Size: {x: 1, y: 2.5723317}
   m_EdgeRadius: 0
 --- !u!114 &1382712070534702224
 MonoBehaviour:

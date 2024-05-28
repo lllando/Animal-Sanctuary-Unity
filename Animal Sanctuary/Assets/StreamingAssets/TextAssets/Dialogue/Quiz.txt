@@ -1,0 +1,12 @@
+Rachel: Hello!
+Rachel: Are you here to start today's quiz?
+*Yes, let's start*No Thanks
+
+/Yes, let's start/
+Rachel: Good luck!
+/0
+
+/No Thanks/
+Rachel: No worries.
+Rachel: Let me know when you want to start.
+/

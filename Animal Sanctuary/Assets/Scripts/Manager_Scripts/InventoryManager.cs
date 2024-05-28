@@ -18,6 +18,11 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item, int stackSize)
     {
+        if(stackSize == 0)
+        {
+            return;
+        }
+
         foreach(InventoryItem inventoryItem in Inventory)
         {
             if(inventoryItem.Item == item)

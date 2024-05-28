@@ -1,0 +1,23 @@
+Tommy: Hello, you must be our new leader for the sanctuary!
+*Yes, I am*Who are you?
+
+/Yes, I am/
+Tommy: Glad to meet ya!
+*Nice to meet you!
+
+/Who are you?/
+Tommy: I am Tommy.
+*Nice to meet you!
+
+/Nice to meet you!/
+Tommy: I sell a variety of items that will help you in looking after endangered species.
+Tommy: Would you like to see what I am selling today?
+*Yes*No thank you
+
+/Yes/
+/0
+
+/No thank you/
+Tommy: No problem.
+Tommy: Have a nice day.
+/

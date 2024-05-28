@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
-    [SerializeField] private QuizQuestion[] testQuiz;
+    [SerializeField] private QuizQuestion[] dailyQuiz;
+
+    [SerializeField] private GameObject quizCanvas;
 
     [Header("Question Display")]
 
@@ -35,7 +37,7 @@ public class QuizManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI finalScoreText;
 
-    [SerializeField] private TextMeshProUGUI fractionText;
+    [SerializeField] private TextMeshProUGUI coinText;
 
     [Header("Option Colors")]
 
@@ -55,15 +57,17 @@ public class QuizManager : MonoBehaviour
 
     private int _score;
 
-    private void Start()
+    public void StartDailyQuiz()
     {
-        StartQuiz(testQuiz);
+        StartQuiz(dailyQuiz);
     }
 
     public void StartQuiz(QuizQuestion[] quiz)
     {
         _questionIndex = 0;
         _currentQuiz = quiz;
+
+        quizCanvas.SetActive(true);
 
         DisplayNextQuestion();
     }
@@ -165,8 +169,10 @@ public class QuizManager : MonoBehaviour
         endScreenObj.SetActive(true);
         questionObj.SetActive(false);
 
-        finalScoreText.text = "FINAL SCORE: " + _score.ToString();
-        fractionText.text = _score.ToString() + "/" + _currentQuiz.Length.ToString();
+        finalScoreText.text = "FINAL SCORE: " + _score.ToString() + "/" + _currentQuiz.Length.ToString();
+        coinText.text = (_score * 5).ToString();
+
+        GameManager.InventoryManager.AddItem(GameManager.InventoryManager.coinItem, _score * 5);
     }
 
     private IEnumerator QuestionTimerDelay()

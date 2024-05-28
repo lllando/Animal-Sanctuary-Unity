@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
+    private SpriteRenderer _playerSpriteRenderer;
 
     private void Awake()
     {
         _playerRb = this.GetComponent<Rigidbody2D>();
         _playerAnimator = this.transform.GetChild(0).GetComponent<Animator>();
+        _playerSpriteRenderer = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -25,24 +27,18 @@ public class PlayerController : MonoBehaviour
 
         if(movementInput.x != 0)
         {
-            if (movementInput.x > 0)
-            {
-                _playerAnimator.SetFloat("directionIndex", 0);
-            }
-            else if (movementInput.x < 0)
-            {
-                _playerAnimator.SetFloat("directionIndex", 1);
-            }
+            _playerAnimator.SetFloat("directionIndex", 0);
+            _playerSpriteRenderer.flipX = movementInput.x < 0;
         }
         else if(movementInput.y != 0)
         {
             if (movementInput.y > 0)
             {
-                _playerAnimator.SetFloat("directionIndex", 2);
+                _playerAnimator.SetFloat("directionIndex", 1);
             }
             else if (movementInput.y < 0)
             {
-                _playerAnimator.SetFloat("directionIndex", 3);
+                _playerAnimator.SetFloat("directionIndex", 2);
             }
         }
 
