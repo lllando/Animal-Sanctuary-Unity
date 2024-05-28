@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,16 +10,24 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
+    private AudioSource audioSource;
 
+    private Vector2 movementInput;
+    
+    public float stepRate = 0.5f;
+    public float stepCoolDown;
+    
+    [SerializeField] private AudioClip footstepAudioClip;
     private void Awake()
     {
         _playerRb = this.GetComponent<Rigidbody2D>();
         _playerAnimator = this.transform.GetChild(0).GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
-        Vector2 movementInput = InputManager.MovementInput;
+        movementInput = InputManager.MovementInput;
 
         _playerRb.MovePosition(_playerRb.position + movementInput * movementSpeed * Time.fixedDeltaTime);
 
@@ -51,4 +61,15 @@ public class PlayerController : MonoBehaviour
 
         this.transform.position = new Vector3(clampX, clampY, 0);
     }
+
+    private void Update()
+    {
+        stepCoolDown -= Time.deltaTime;
+        if ((movementInput.x != 0f || movementInput.y != 0f) && stepCoolDown < 0f){
+            audioSource.pitch = 1f + Random.Range (-0.2f, 0.2f);
+            audioSource.PlayOneShot(footstepAudioClip, 0.9f);
+            stepCoolDown = stepRate;
+        }
+    }
+    
 }
