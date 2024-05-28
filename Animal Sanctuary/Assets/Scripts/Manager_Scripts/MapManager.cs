@@ -20,17 +20,19 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private Transform environmentObjectParent;
 
+    [SerializeField] private Transform animalObjectParent;
+
     [Header("Parameters")]
 
     [SerializeField] MapParameters terrainParameters;
-
-    [SerializeField] MapParameters resourceParameters;
 
     [Header("Prefabs")]
 
     [SerializeField] private RandomPrefab[] resourcePrefabs;
 
     [SerializeField] private RandomPrefab[] environmentPrefabs;
+
+    [SerializeField] private RandomPrefab[] animalPrefabs;
 
     private int[,] _terrainMap;
 
@@ -89,7 +91,7 @@ public class MapManager : MonoBehaviour
 
                         for (int i = 0; i < resourcePrefabs.Length; i++)
                         {
-                            float random = Random.Range(0, 500);
+                            float random = Random.Range(0, 10000);
 
                             if (resourcePrefabs[i].rarityThreshold >= random)
                             {
@@ -99,11 +101,28 @@ public class MapManager : MonoBehaviour
                             }
                         }
 
-                        if (!resourceSpawned)
+                        bool animalSpawned = false;
+
+                        if(!resourceSpawned)
                         {
                             for (int i = 0; i < environmentPrefabs.Length; i++)
                             {
-                                float random = Random.Range(0, 200);
+                                float random = Random.Range(0, 10000);
+
+                                if (animalPrefabs[i].rarityThreshold >= random)
+                                {
+                                    Instantiate(animalPrefabs[i].prefab, position, Quaternion.identity, animalObjectParent);
+                                    animalSpawned = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!animalSpawned)
+                        {
+                            for (int i = 0; i < environmentPrefabs.Length; i++)
+                            {
+                                float random = Random.Range(0, 10000);
 
                                 if (environmentPrefabs[i].rarityThreshold >= random)
                                 {

@@ -20,3 +20,4 @@ MonoBehaviour:
   itemUseIncrease: 50
   itemTagList:
   - Medicine
+  itemId: 3

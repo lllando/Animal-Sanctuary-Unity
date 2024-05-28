@@ -18,6 +18,8 @@ public class Item : ScriptableObject
 
     [SerializeField] private List<string> itemTagList;
 
+    [SerializeField] private int itemId;
+
     public string ItemName
     {
         get { return itemName; }
@@ -51,5 +53,10 @@ public class Item : ScriptableObject
     public List<string> ItemTagList
     {
         get { return itemTagList; }
+    }
+
+    public int ItemID
+    {
+        get { return itemId; }
     }
 }

@@ -5849,16 +5849,12 @@ MonoBehaviour:
   bottomTile: {fileID: 11400000, guid: 97c8b1225c454404d8b67aa6f7ee615c, type: 2}
   resourceObjectParent: {fileID: 1024236169}
   environmentObjectParent: {fileID: 2138978633}
+  animalObjectParent: {fileID: 1884537839}
   terrainParameters:
     initialChance: 50
     birthLimit: 3
     deathLimit: 3
     iterations: 5
-  resourceParameters:
-    initialChance: 5
-    birthLimit: 2
-    deathLimit: 2
-    iterations: 2
   resourcePrefabs:
   - prefab: {fileID: 2742508562992967505, guid: 39409f141efb243499307b13c1af5fd1, type: 3}
     rarityThreshold: 5
@@ -5870,6 +5866,11 @@ MonoBehaviour:
     rarityThreshold: 14
   environmentPrefabs:
   - prefab: {fileID: 5870183243775357066, guid: 05b6fdf4608a43f43b36dd49690c8045, type: 3}
+    rarityThreshold: 2
+  animalPrefabs:
+  - prefab: {fileID: 3384395577114841486, guid: 8e8cd9aab1ee20e498690286718e7543, type: 3}
+    rarityThreshold: 5
+  - prefab: {fileID: 3384395577114841486, guid: a7e02d75fe17af7439ff889503818fda, type: 3}
     rarityThreshold: 2
   _tMapSize: {x: 80, y: 80, z: 0}
 --- !u!1 &516061997
@@ -22094,6 +22095,7 @@ GameObject:
   - component: {fileID: 1861539637}
   - component: {fileID: 1861539639}
   - component: {fileID: 1861539640}
+  - component: {fileID: 1861539641}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -22128,6 +22130,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300881954404ed64195fad60df3e200c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemArray:
+  - {fileID: 11400000, guid: b061a038dd445574a901a14832ba14d5, type: 2}
+  - {fileID: 11400000, guid: 00f1a227474ed784cb021d4aaff0a2e6, type: 2}
+  - {fileID: 11400000, guid: 95a4b217b45cf3f498e034656f89f52a, type: 2}
+  - {fileID: 11400000, guid: f491229b21d47f146afa1d9119ba7ab3, type: 2}
+  - {fileID: 11400000, guid: 1856af4b8dd4e3a4f9080b5ef30c9afe, type: 2}
+  - {fileID: 11400000, guid: 7de862a3e2247014092e9dc449535e2c, type: 2}
+  - {fileID: 11400000, guid: 6566d02308f834841bc90735db09dcbb, type: 2}
+  - {fileID: 11400000, guid: 71caa7931d28c5244a7a38e4af17d19d, type: 2}
 --- !u!114 &1861539634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22181,6 +22192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryActive: 0
+  animalNameInputField: {fileID: 0}
   inventorySlotArray:
   - {fileID: 1460866108}
   - {fileID: 2113062154}
@@ -22253,7 +22265,6 @@ MonoBehaviour:
   buildHabitatButton: {fileID: 1931310164}
   habitatMenuObj: {fileID: 1877018679}
   animalDetailsObj: {fileID: 130299673}
-  animalScreenNameText: {fileID: 2011760776}
   animalInfoText: {fileID: 1578802068}
   animalStatsArray:
   - {fileID: 2029752770}
@@ -22372,7 +22383,24 @@ MonoBehaviour:
   animalArray:
   - {fileID: 11400000, guid: e082e553bebf7fb40b42860822f23bfe, type: 2}
   - {fileID: 11400000, guid: 3592cc8e44f21434e86a12becae8b4fa, type: 2}
+  randomNames: []
   animalControllerPrefab: {fileID: 5240867713943216035, guid: 42174241d9c51774686234ba70a94dc3, type: 3}
+--- !u!114 &1861539641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861539631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a988aca0f9957e4c8df05a17dae0fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  playerData:
+    itemIDArray: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    itemStackArray: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1877018679
 GameObject:
   m_ObjectHideFlags: 0
@@ -22476,6 +22504,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1884537838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1884537839}
+  m_Layer: 0
+  m_Name: AnimalObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1884537839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884537838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894293415
 GameObject:
   m_ObjectHideFlags: 0
@@ -25851,7 +25910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 30, y: 30, z: 0}
+    m_Extent: {x: 25, y: 30, z: 0}
   movementSpeed: 4
 --- !u!4 &1629688949218157864
 Transform:
@@ -25899,4 +25958,5 @@ SceneRoots:
   - {fileID: 511480617}
   - {fileID: 1024236169}
   - {fileID: 2138978633}
+  - {fileID: 1884537839}
   - {fileID: 1253696892}

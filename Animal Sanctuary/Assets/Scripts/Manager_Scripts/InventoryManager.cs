@@ -2,24 +2,16 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    private InventoryItem[] _inventory = new InventoryItem[12];
+    public Item[] itemArray;
 
     public InventoryItem[] Inventory
     {
-        get { return _inventory; }
-    }
-
-    private void Awake()
-    {
-        for(int i = 0; i < 12; i++)
-        {
-            _inventory[i] = new InventoryItem(null, 0);
-        }
+        get { return GameManager.SaveManager.inventory; }
     }
 
     public void AddItem(Item item, int stackSize)
     {
-        foreach(InventoryItem inventoryItem in _inventory)
+        foreach(InventoryItem inventoryItem in Inventory)
         {
             if(inventoryItem.Item == item)
             {
@@ -44,7 +36,7 @@ public class InventoryManager : MonoBehaviour
 
         Debug.Log("An item was not found, so just add a new inventory item");
 
-        foreach(InventoryItem check in _inventory)
+        foreach(InventoryItem check in Inventory)
         {
             if(check.Item == null)
             {
@@ -61,7 +53,7 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItem(Item item, int stackSize)
     {
-        foreach(InventoryItem inventoryItem in _inventory)
+        foreach(InventoryItem inventoryItem in Inventory)
         {
             if(inventoryItem.Item == item)
             {
@@ -101,7 +93,7 @@ public class InventoryManager : MonoBehaviour
     {
         int totalItem = 0;
 
-        foreach(InventoryItem inventoryItem in _inventory)
+        foreach(InventoryItem inventoryItem in Inventory)
         {
             if(inventoryItem.Item == item)
             {
@@ -116,7 +108,7 @@ public class InventoryManager : MonoBehaviour
     {
         int totalItem = 0;
 
-        foreach (InventoryItem inventoryItem in _inventory)
+        foreach (InventoryItem inventoryItem in Inventory)
         {
             if (inventoryItem.Item == item)
             {
@@ -128,6 +120,7 @@ public class InventoryManager : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class InventoryItem
 {
     private Item _item;

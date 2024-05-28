@@ -17,3 +17,6 @@ MonoBehaviour:
   itemCost: 5
   itemMaxStack: 20
   itemScale: {x: 0, y: 0, z: 0}
+  itemUseIncrease: 0
+  itemTagList: []
+  itemId: 4

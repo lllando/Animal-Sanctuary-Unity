@@ -17,5 +17,7 @@ MonoBehaviour:
   itemCost: 4
   itemMaxStack: 1
   itemScale: {x: 1, y: 1, z: 1}
+  itemUseIncrease: 0
   itemTagList:
   - Animal
+  itemId: 100

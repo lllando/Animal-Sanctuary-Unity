@@ -20,3 +20,4 @@ MonoBehaviour:
   itemUseIncrease: 10
   itemTagList:
   - Food
+  itemId: 1

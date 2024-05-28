@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public static PlayerController PlayerController;
     public static Transform PlayerTransform;
 
+    public static SaveManager SaveManager;
+
     public bool DisableInteract
     {
         get { return disableInteract; }
@@ -30,11 +32,17 @@ public class GameManager : MonoBehaviour
         DialogueManager = this.GetComponent<DialogueManager>();
         ResourceManager = this.GetComponent<ResourceManager>();
         HabitatManager = this.GetComponent<HabitatManager>();
+        SaveManager = this.GetComponent<SaveManager>();
 
         PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
         PlayerTransform = PlayerController.transform;
 
         MainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        SaveManager.LoadGame();
     }
 
     private void Update()
@@ -51,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
+        SaveManager.SaveGame();
         SceneManager.LoadScene(index);
     }
 

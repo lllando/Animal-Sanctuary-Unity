@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 839176098788910060}
   - component: {fileID: 3480741549224133792}
   m_Layer: 0
-  m_Name: AnimalPickup
+  m_Name: Elephant_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3384395577114841486
 Transform:
   m_ObjectHideFlags: 0
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 11400000, guid: e082e553bebf7fb40b42860822f23bfe, type: 2}
-  interactDistanceThreshold: 20
+  interactDistanceThreshold: 5

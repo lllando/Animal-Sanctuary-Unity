@@ -20,3 +20,4 @@ MonoBehaviour:
   itemUseIncrease: 15
   itemTagList:
   - Water
+  itemId: 6
