@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public static SaveManager SaveManager;
 
+    public static ShopManager ShopManager;
+
     public bool DisableInteract
     {
         get { return disableInteract; }
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour
         ResourceManager = this.GetComponent<ResourceManager>();
         HabitatManager = this.GetComponent<HabitatManager>();
         SaveManager = this.GetComponent<SaveManager>();
+
+        this.TryGetComponent(out ShopManager shop);
+        ShopManager = shop;
 
         PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
         PlayerTransform = PlayerController.transform;

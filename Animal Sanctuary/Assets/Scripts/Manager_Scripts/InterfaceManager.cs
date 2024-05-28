@@ -265,4 +265,70 @@ public class InterfaceManager : MonoBehaviour
         ActiveItemInteraction = (ItemInteraction)index;
         inventoryActive = index != 0;
     }
+
+    [Header("Shop Menu")]
+
+    [SerializeField] private GameObject shopCanvasObj;
+
+    [SerializeField] private GameObject buyPanelObj;
+
+    [SerializeField] private TextMeshProUGUI coinText;
+
+    [SerializeField] private TextMeshProUGUI itemNameText;
+
+    [SerializeField] private Image itemIcon;
+
+    [SerializeField] private Slider itemSlider;
+
+    [SerializeField] private TextMeshProUGUI itemCountText;
+
+    [SerializeField] private Button buyButton;
+
+    [SerializeField] private TraderSlot[] traderSlotArray;
+
+    public int ItemCount
+    {
+        get { return (int)itemSlider.value; }
+    }
+
+    public void DisplayShop(InventoryItem[] shopInventory)
+    {
+        shopCanvasObj.SetActive(true);
+        coinText.text = GameManager.InventoryManager.GetItemCount(GameManager.InventoryManager.coinItem).ToString();
+
+        //Update Shop Inventory
+
+        int index = 0;
+
+        foreach(TraderSlot slot in traderSlotArray)
+        {
+            slot.AssignItem(shopInventory[index].Item, shopInventory[index].StackSize);
+            index++;
+        }
+    }
+
+    public void DisplayBuyItem(Item item, int stackSize)
+    {
+        buyPanelObj.SetActive(true);
+
+        itemNameText.text = item.ItemName;
+        itemIcon.sprite = item.ItemIcon;
+
+        itemSlider.maxValue = stackSize;
+        itemSlider.value = 1;
+
+        itemCountText.text = "1";
+
+        BuyItemSliderUpdate();
+    }
+
+    public void BuyItemSliderUpdate() //Via Inspector (Slider)
+    {
+        int individualCost = GameManager.ShopManager.focusItem.ItemCost;
+        float totalCost = individualCost * itemSlider.value;
+
+        itemCountText.text = itemSlider.value.ToString();
+
+        buyButton.interactable = totalCost <= GameManager.InventoryManager.Coins;
+    }
 }

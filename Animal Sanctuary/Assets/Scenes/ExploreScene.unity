@@ -5845,7 +5845,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topMap: {fileID: 1001274765}
   bottomMap: {fileID: 1606381543}
-  topTile: {fileID: 11400000, guid: 9d3d3892854838c41b4c9a92ad83183d, type: 2}
+  randomTileArray:
+  - tile: {fileID: 11400000, guid: 9d3d3892854838c41b4c9a92ad83183d, type: 2}
+    rarityThreshold: 78
+  - tile: {fileID: 11400000, guid: fb16374e2ace807499f78026fada3c0f, type: 2}
+    rarityThreshold: 28
+  - tile: {fileID: 11400000, guid: 44821f5f717fc9e4cbd046750c5b0a81, type: 2}
+    rarityThreshold: 22
+  - tile: {fileID: 11400000, guid: d57904b2b5f5bd34c8011846a352774c, type: 2}
+    rarityThreshold: 40
+  - tile: {fileID: 11400000, guid: 102cf751b434f46428a3627ca1088fa8, type: 2}
+    rarityThreshold: 3
   bottomTile: {fileID: 11400000, guid: 97c8b1225c454404d8b67aa6f7ee615c, type: 2}
   resourceObjectParent: {fileID: 1024236169}
   environmentObjectParent: {fileID: 2138978633}
@@ -5866,7 +5876,7 @@ MonoBehaviour:
     rarityThreshold: 14
   environmentPrefabs:
   - prefab: {fileID: 5870183243775357066, guid: 05b6fdf4608a43f43b36dd49690c8045, type: 3}
-    rarityThreshold: 2
+    rarityThreshold: 47
   animalPrefabs:
   - prefab: {fileID: 3384395577114841486, guid: 8e8cd9aab1ee20e498690286718e7543, type: 3}
     rarityThreshold: 5

@@ -4,6 +4,8 @@ public class ItemPickup : MonoBehaviour
 {
     [SerializeField] private Item assignedItem;
 
+    [SerializeField] private int amount = 1;
+
     private SpriteRenderer _spriteRenderer;
 
     public Item AssignedItem
@@ -21,7 +23,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.InventoryManager.AddItem(assignedItem, 1);
+            GameManager.InventoryManager.AddItem(assignedItem, amount);
             this.gameObject.SetActive(false);
         }
     }
