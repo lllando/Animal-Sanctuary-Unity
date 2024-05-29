@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
+    private SpriteRenderer _spriteRenderer;
     private AudioSource audioSource;
 
     private Vector2 movementInput;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerRb = this.GetComponent<Rigidbody2D>();
         _playerAnimator = this.transform.GetChild(0).GetComponent<Animator>();
+        _spriteRenderer = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -35,24 +37,18 @@ public class PlayerController : MonoBehaviour
 
         if(movementInput.x != 0)
         {
-            if (movementInput.x > 0)
-            {
-                _playerAnimator.SetFloat("directionIndex", 0);
-            }
-            else if (movementInput.x < 0)
-            {
-                _playerAnimator.SetFloat("directionIndex", 1);
-            }
+            _playerAnimator.SetFloat("directionIndex", 0);
+            _spriteRenderer.flipX = movementInput.x < 0;
         }
         else if(movementInput.y != 0)
         {
             if (movementInput.y > 0)
             {
-                _playerAnimator.SetFloat("directionIndex", 2);
+                _playerAnimator.SetFloat("directionIndex", 1);
             }
             else if (movementInput.y < 0)
             {
-                _playerAnimator.SetFloat("directionIndex", 3);
+                _playerAnimator.SetFloat("directionIndex", 2);
             }
         }
 

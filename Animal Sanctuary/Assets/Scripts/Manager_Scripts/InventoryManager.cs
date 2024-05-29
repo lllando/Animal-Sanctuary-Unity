@@ -109,7 +109,7 @@ public class InventoryManager : MonoBehaviour
         {
             if(inventoryItem.Item == item)
             {
-                totalItem += item.ItemCost;
+                totalItem += inventoryItem.StackSize;
             }
         }
 

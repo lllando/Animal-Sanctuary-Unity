@@ -16,7 +16,6 @@ public class ExploreInteractive : MonoBehaviour, Interactive
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         audioSource = GetComponent<AudioSource>();
     }
     
@@ -24,12 +23,8 @@ public class ExploreInteractive : MonoBehaviour, Interactive
     {
         if (MeasurementUtility.IsNear(this.transform.position, GameManager.PlayerTransform.position, interactDistanceThreshold))
         {
+            AudioManager.Instance.PlayAudio(audioSource, exploreAudioClip);
             GameManager.InterfaceManager.DisplayConfirmCanvas();
         }
-    }
-
-    public void OnInteractConfirm()
-    {
-        AudioManager.Instance.PlayAudio(audioSource, exploreAudioClip);
     }
 }

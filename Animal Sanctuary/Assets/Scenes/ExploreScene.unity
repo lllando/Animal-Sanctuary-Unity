@@ -14450,7 +14450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1253696889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22305,6 +22305,8 @@ MonoBehaviour:
   dialogueText: {fileID: 1342131233}
   characterNameText: {fileID: 1581239165}
   continueDialogueButton: {fileID: 1125837362}
+  dialogueNpcArray: []
+  speakerIcon: {fileID: 0}
 --- !u!114 &1861539636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22449,35 +22451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc77755c0ebe8744a1b1dabdc916b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testQuiz:
-  - question: What color is the sky?
-    optionsArray:
-    - Red
-    - Blue
-    - Yellow
-    - Green
-    correctAnswerIndex: 1
-  - question: What color is the sky?
-    optionsArray:
-    - Red
-    - Blue
-    - Yellow
-    - Green
-    correctAnswerIndex: 1
-  - question: What color is the sky?
-    optionsArray:
-    - Red
-    - Blue
-    - Yellow
-    - Green
-    correctAnswerIndex: 1
-  - question: What color is the sky?
-    optionsArray:
-    - Red
-    - Blue
-    - Yellow
-    - Green
-    correctAnswerIndex: 1
+  dailyQuiz: []
+  quizCanvas: {fileID: 0}
   questionText: {fileID: 855212512}
   timerText: {fileID: 1189536291}
   optionTextArray:
@@ -22501,7 +22476,7 @@ MonoBehaviour:
   endScreenObj: {fileID: 1799031604}
   questionObj: {fileID: 633354671}
   finalScoreText: {fileID: 731146701}
-  fractionText: {fileID: 877045879}
+  coinText: {fileID: 0}
   defaultOptionColor: {r: 0.68235296, g: 0.40000004, b: 0.26666668, a: 1}
   correctOptionColor: {r: 0.26666668, g: 0.68235296, b: 0.38398665, a: 1}
   incorrectOptionColor: {r: 0.68235296, g: 0.26666668, b: 0.30192965, a: 1}
