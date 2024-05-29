@@ -368,6 +368,7 @@ MonoBehaviour:
   maxInteracts: 8
   interactCanvas: {fileID: 1759233537309045615}
   interactSlider: {fileID: 8630621164563286974}
+  resourceInteractAudioClip: {fileID: 8300000, guid: c8eae6ded45eebf4794b43eaaa2e8955, type: 3}
 --- !u!61 &3273806039605487371
 BoxCollider2D:
   m_ObjectHideFlags: 0
