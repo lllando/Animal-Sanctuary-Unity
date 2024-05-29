@@ -23,4 +23,4 @@ MonoBehaviour:
   - 
   - 
   - 
-  spriteScale: {x: 5, y: 5, z: 5}
+  spriteScale: {x: 8, y: 10, z: 10}

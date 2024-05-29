@@ -66,7 +66,10 @@ public class HabitatManager : MonoBehaviour
                     controller = Instantiate(animalControllerPrefab, Vector3.zero, Quaternion.identity, _focusHabitat.transform);
                 }
 
-                controller.transform.position = _focusHabitat.transform.position;
+                int randX = Random.Range(-2, 2);
+                int randY = Random.Range(-2, 2);
+
+                controller.transform.position = _focusHabitat.transform.position + new Vector3(randX, randY, 0);
 
                 _focusHabitat.AnimalList.Add(controller);
 
@@ -85,6 +88,14 @@ public class HabitatManager : MonoBehaviour
     {
         if(_focusHabitat != null && item != null)
         {
+            if(_focusHabitat.AnimalList.Count > 0)
+            {
+                if (GameManager.HabitatManager.GetAnimalFromItem(item) != _focusHabitat.AnimalList[0].AssignedAnimal)
+                {
+                    return;
+                }
+            }
+
             if (item.ItemTagList.Contains("Animal"))
             {
                 _potentialNewAnimal = item;
@@ -139,5 +150,18 @@ public class HabitatManager : MonoBehaviour
             GameManager.InterfaceManager.UpdateAnimalDisplay();
             Debug.Log("Animal Name Updated!");
         }
+    }
+
+    public Item GetAnimalFromItem(Item item)
+    {
+        foreach(Animal animal in animalArray)
+        {
+            if(animal.AnimalItem == item)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 }
