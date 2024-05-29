@@ -1656,8 +1656,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13163,8 +13163,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15773,8 +15773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 1000, y: 200}
+  m_AnchoredPosition: {x: 0, y: 390}
+  m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855212512
 MonoBehaviour:
@@ -59387,8 +59387,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -63694,8 +63694,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -81013,6 +81013,55 @@ MonoBehaviour:
     - Extinct
     - Vulnerable
     correctAnswerIndex: 1
+  - question: What is the main reason for the decline of the African elephant population?
+    optionsArray:
+    - Climate change
+    - Habitat loss
+    - Poaching for ivory
+    - Disease
+    correctAnswerIndex: 2
+  - question: What is the status of the mountain gorilla population in the wild?
+    optionsArray:
+    - Least Concern
+    - Near Threatened
+    - Endangered
+    - Critically Endangered
+    correctAnswerIndex: 3
+  - question: Which of the following is an endangered species of tiger?
+    optionsArray:
+    - Bengal Tiger
+    - Siberian Tiger
+    - Sumatran Tiger
+    - Malayan Tiger
+    correctAnswerIndex: 2
+  - question: What is the primary greenhouse gas responsible for climate change?
+    optionsArray:
+    - Methane (CH4)
+    - Carbon dioxide (CO2)
+    - Nitrous oxide (N2O)
+    - Chlorofluorocarbons (CFCs)
+    correctAnswerIndex: 1
+  - question: Which renewable energy source generates the most electricity worldwide?
+    optionsArray:
+    - Solar power
+    - Wind power
+    - Hydropower
+    - Geothermal power
+    correctAnswerIndex: 2
+  - question: What impact does deforestation have on climate change?
+    optionsArray:
+    - It decreases greenhouse gas emissions
+    - It has no impact
+    - It increases greenhouse gas emissions
+    - It increases oxygen production
+    correctAnswerIndex: 0
+  - question: Which sector is the largest contributor to global greenhouse gas emissions?
+    optionsArray:
+    - Transportation
+    - Agriculture
+    - Electricity and heat production
+    - Industry
+    correctAnswerIndex: 2
   quizCanvas: {fileID: 1673082262}
   questionText: {fileID: 855212512}
   timerText: {fileID: 1189536291}
