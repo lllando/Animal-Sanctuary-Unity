@@ -24,3 +24,6 @@ MonoBehaviour:
   - 
   - 
   spriteScale: {x: 8, y: 10, z: 10}
+  foodDayDecrease: 60
+  thirstDayDecrease: 40
+  healthDayDecrease: 10
