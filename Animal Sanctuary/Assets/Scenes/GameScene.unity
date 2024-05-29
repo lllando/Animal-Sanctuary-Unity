@@ -81106,12 +81106,15 @@ MonoBehaviour:
   animalArray:
   - {fileID: 11400000, guid: e082e553bebf7fb40b42860822f23bfe, type: 2}
   - {fileID: 11400000, guid: 3592cc8e44f21434e86a12becae8b4fa, type: 2}
+  - {fileID: 11400000, guid: 6b083296ffd8d1b4f998fdbddcac4666, type: 2}
   randomNames:
   - Elle
   - Emily
   - Eddy
   - Oscar
   - Alex
+  - Gemma
+  - Thomas
   animalControllerPrefab: {fileID: 5240867713943216035, guid: 42174241d9c51774686234ba70a94dc3, type: 3}
 --- !u!114 &1861539641
 MonoBehaviour:
