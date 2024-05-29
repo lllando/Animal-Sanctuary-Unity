@@ -10195,7 +10195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abb28a22ea618b4bb3980146d62b0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistanceThreshold: 1
+  interactDistanceThreshold: 2
   shopInventory:
   - _item: {fileID: 11400000, guid: 2ce3990ab84d9ff4ebd612762f6bdfc6, type: 2}
     _stackSize: 10
@@ -75823,7 +75823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 680, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1629023162
@@ -80881,7 +80881,7 @@ MonoBehaviour:
   animalArray:
   - {fileID: 11400000, guid: e082e553bebf7fb40b42860822f23bfe, type: 2}
   - {fileID: 11400000, guid: 3592cc8e44f21434e86a12becae8b4fa, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6b083296ffd8d1b4f998fdbddcac4666, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -81006,13 +81006,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dailyQuiz:
-  - question: What colour is the sky?
+  - question: What is the endangered status of Elephants
     optionsArray:
-    - Blue
-    - Green
-    - Red
-    - Yellow
-    correctAnswerIndex: 0
+    - Endangered
+    - Critically Endangered
+    - Extinct
+    - Vulnerable
+    correctAnswerIndex: 1
   quizCanvas: {fileID: 1673082262}
   questionText: {fileID: 855212512}
   timerText: {fileID: 1189536291}
