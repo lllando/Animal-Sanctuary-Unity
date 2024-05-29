@@ -9,6 +9,8 @@ public class WaterInteractive : MonoBehaviour, Interactive
     [SerializeField] private Item bucketItem;
 
     [SerializeField] private Item waterBucketItem;
+    
+    [SerializeField] private AudioClip waterInteractAudioClip;
 
     public float InteractDistanceThreshold
     {
@@ -23,6 +25,8 @@ public class WaterInteractive : MonoBehaviour, Interactive
             {
                 GameManager.InventoryManager.AddItem(waterBucketItem, 1);
                 GameManager.InventoryManager.RemoveItem(bucketItem, 1);
+                
+                AudioManager.Instance.PlayAudioUsingPrefab(gameObject.transform.position, waterInteractAudioClip);
             }
 
             Debug.Log("Water Interact");
