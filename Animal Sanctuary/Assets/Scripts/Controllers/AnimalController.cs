@@ -37,19 +37,10 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    public void UpdateStatsRealTime()
-    {
-        for(int i = 0; i < _statsArray.Length; i++)
-        {
-            _statsArray[i] -= Time.deltaTime * 0.1f;
-        }
-    }
-
     public void UpdateStatsIntervalTime()
     {
-        for (int i = 0; i < _statsArray.Length; i++)
-        {
-            _statsArray[i] -= Time.deltaTime * 0.1f;
-        }
+        _statsArray[0] -= _assignedAnimal.FoodDayDecrease;
+        _statsArray[1] -= _assignedAnimal.ThirstDayDecrease;
+        _statsArray[2] -= _assignedAnimal.HealthDayDecrease;
     }
 }

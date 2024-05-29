@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public bool disableInteract;
 
+    public static GameManager GameManagerInstance;
+
     public static InventoryManager InventoryManager;
     public static InterfaceManager InterfaceManager;
     public static Camera MainCamera;
@@ -21,6 +23,14 @@ public class GameManager : MonoBehaviour
 
     public static ShopManager ShopManager;
 
+    public static int DayCount;
+
+    [Header("Day Transition")]
+
+    [SerializeField] private NPCController quizNPC;
+
+    [SerializeField] private Animator dayTransitionAnimator;
+
     public bool DisableInteract
     {
         get { return disableInteract; }
@@ -29,6 +39,8 @@ public class GameManager : MonoBehaviour
      
     private void Awake()
     {
+        GameManagerInstance = this;
+
         InventoryManager = this.GetComponent<InventoryManager>();
         InterfaceManager = this.GetComponent<InterfaceManager>();
         DialogueManager = this.GetComponent<DialogueManager>();
@@ -71,6 +83,19 @@ public class GameManager : MonoBehaviour
     public void ReturnTimeScale()
     {
         Time.timeScale = 1;
+    }
+
+    public void IncreaseDay() //Via Inspector (Button)
+    {
+        DayCount++;
+        SaveManager.SaveGame();
+        InterfaceManager.UpdateDayText(DayCount);
+
+        HabitatManager.UpdateAnimalStats();
+
+        quizNPC.DialogueIndex = 1;
+
+        dayTransitionAnimator.SetTrigger("transition");
     }
 
     private void PlayerInteractRaycast()

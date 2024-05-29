@@ -64,6 +64,8 @@ public class QuizManager : MonoBehaviour
 
     public void StartQuiz(QuizQuestion[] quiz)
     {
+        _score = 0;
+
         _questionIndex = 0;
         _currentQuiz = quiz;
 

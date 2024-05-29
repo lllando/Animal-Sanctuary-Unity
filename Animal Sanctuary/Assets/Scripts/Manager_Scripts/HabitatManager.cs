@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HabitatManager : MonoBehaviour
@@ -15,6 +16,13 @@ public class HabitatManager : MonoBehaviour
     private AnimalController _focusAnimal;
 
     private Item _potentialNewAnimal;
+
+    private List<HabitatController> _habitatList = new List<HabitatController>();
+
+    public List<HabitatController> HabitatList
+    {
+        get { return _habitatList; }
+    }
 
     public HabitatController FocusHabitat
     {
@@ -120,6 +128,7 @@ public class HabitatManager : MonoBehaviour
     public void BuildHabitat()
     {
         _focusHabitat.IsBuilt = true;
+        _habitatList.Add(_focusHabitat);
         _focusHabitat = null;
     }
 
@@ -163,5 +172,13 @@ public class HabitatManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void UpdateAnimalStats()
+    {
+        foreach(HabitatController habitat in _habitatList)
+        {
+            habitat.UpdateAnimalStats();
+        }
     }
 }

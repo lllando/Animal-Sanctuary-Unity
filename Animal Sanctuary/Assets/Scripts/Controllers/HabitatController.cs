@@ -33,29 +33,8 @@ public class HabitatController : MonoBehaviour
         get { return _inactiveAnimalList; }
     }
 
-    private void Start()
+    public void UpdateAnimalStats()
     {
-        StartCoroutine(ApplyIntervalStats());
-    }
-
-    private void Update()
-    {
-        if(_isBuilt)
-        {
-            foreach(AnimalController animal in animalList)
-            {
-                if (GameManager.HabitatManager.FocusAnimal == animal)
-                {
-                    animal.UpdateStatsRealTime();
-                }
-            }
-        }
-    }
-
-    private IEnumerator ApplyIntervalStats()
-    {
-        yield return new WaitForSeconds(10);
-
         foreach (AnimalController animal in animalList)
         {
             if (GameManager.HabitatManager.FocusAnimal != animal)
@@ -63,7 +42,5 @@ public class HabitatController : MonoBehaviour
                 animal.UpdateStatsIntervalTime();
             }
         }
-
-        StartCoroutine(ApplyIntervalStats());
     }
 }

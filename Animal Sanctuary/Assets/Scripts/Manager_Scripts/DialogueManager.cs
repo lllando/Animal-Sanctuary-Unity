@@ -56,6 +56,8 @@ public class DialogueManager : MonoBehaviour
         string readFromFilePath = Application.streamingAssetsPath + "/TextAssets/Dialogue/" + _dialogueInteractive.DialogueTextPath;
         _dialogueLines = System.IO.File.ReadAllLines(readFromFilePath);
 
+        GameManager.GameManagerInstance.disableInteract = true;
+
         NextDialogue();
 
         Debug.Log("Dialogue Started!");
@@ -176,6 +178,8 @@ public class DialogueManager : MonoBehaviour
 
         _dialogueLines = new string[0];
         _dialogueIndex = 0;
+
+        GameManager.GameManagerInstance.disableInteract = false;
     }
 
     public void SelectOption(int index) //Via Inspector (Button)

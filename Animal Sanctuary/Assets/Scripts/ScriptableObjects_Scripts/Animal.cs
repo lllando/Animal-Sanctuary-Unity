@@ -22,6 +22,14 @@ public class Animal : ScriptableObject
 
     [SerializeField] private Vector3 spriteScale;
 
+    [Header("New Day Stat Values")]
+
+    [SerializeField] private float foodDayDecrease;
+
+    [SerializeField] private float thirstDayDecrease;
+
+    [SerializeField] private float healthDayDecrease;
+
     public string AnimalDescription
     {
         get { return animalDescription; }
@@ -65,5 +73,20 @@ public class Animal : ScriptableObject
     public Vector3 SpriteScale
     {
         get { return spriteScale; }
+    }
+
+    public float FoodDayDecrease
+    {
+        get { return foodDayDecrease; }
+    }
+
+    public float ThirstDayDecrease
+    {
+        get { return thirstDayDecrease; }
+    }
+
+    public float HealthDayDecrease
+    {
+        get { return healthDayDecrease; }
     }
 }

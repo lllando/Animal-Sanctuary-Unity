@@ -31,3 +31,6 @@ MonoBehaviour:
   - The elephant's temporal lobe (the area of the brain associated with memory) is
     larger and denser than that of people - hence the saying 'elephants never forget'.
   spriteScale: {x: 1, y: 1, z: 1}
+  foodDayDecrease: 40
+  thirstDayDecrease: 50
+  healthDayDecrease: 20

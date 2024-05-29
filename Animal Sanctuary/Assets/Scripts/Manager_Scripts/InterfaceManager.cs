@@ -341,4 +341,21 @@ public class InterfaceManager : MonoBehaviour
 
         buyButton.interactable = totalCost <= GameManager.InventoryManager.Coins;
     }
+
+    [Header("Day Cycle")]
+
+    [SerializeField] private TextMeshProUGUI dayCountText;
+
+    [SerializeField] private GameObject confirmDayObj;
+
+    public void UpdateDayText(int day)
+    {
+        dayCountText.text = "Day " + day.ToString();
+    }
+
+    public void DisplayEndDayConfirm()
+    {
+        GameManager.GameManagerInstance.disableInteract = true;
+        confirmDayObj.SetActive(true);
+    }
 }

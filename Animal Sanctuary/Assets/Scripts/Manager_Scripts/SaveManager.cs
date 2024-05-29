@@ -43,6 +43,8 @@ public class SaveManager : MonoBehaviour
         playerData.itemIDArray = itemIDArray;
         playerData.itemStackArray = itemStackArray;
 
+        playerData.dayNum = GameManager.DayCount;
+
         string json = JsonUtility.ToJson(playerData);
         string filePath = Application.streamingAssetsPath + "/Saves/save.txt";
         System.IO.File.WriteAllText(filePath, json);
@@ -65,6 +67,9 @@ public class SaveManager : MonoBehaviour
             inventory[i].Item = GetItemViaID(playerData.itemIDArray[i]);
             inventory[i].StackSize = playerData.itemStackArray[i];
         }
+
+        GameManager.DayCount = playerData.dayNum;
+        GameManager.InterfaceManager.UpdateDayText(playerData.dayNum);
     }
 
     public Item GetItemViaID(int id)
@@ -87,4 +92,6 @@ public class PlayerData
     public int[] itemIDArray;
 
     public int[] itemStackArray;
+
+    public int dayNum;
 }

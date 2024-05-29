@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(GameManager.GameManagerInstance.disableInteract)
+        {
+            return;
+        }
+
         movementInput = InputManager.MovementInput;
 
         _playerRb.MovePosition(_playerRb.position + movementInput * movementSpeed * Time.fixedDeltaTime);
