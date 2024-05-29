@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,8 +41,6 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField] private Image animalImage;
 
     [SerializeField] private TextMeshProUGUI animalNameDisplayText;
-
-    [SerializeField] private TextMeshProUGUI animalDescriptionText;
 
     [SerializeField] private TextMeshProUGUI[] animalFactTextArray;
 
@@ -113,8 +112,16 @@ public class InterfaceManager : MonoBehaviour
     {
         for(int i = 0; i < animalArray.Length; i++)
         {
-            animalEntry[i].AssignedAnimal = animalArray[i];
-            animalEntry[i].AnimalIcon.sprite = animalArray[i].AnimalIcon;
+            if (animalArray[i] != null)
+            {
+                animalEntry[i].AnimalIcon.gameObject.SetActive(true);
+                animalEntry[i].AssignedAnimal = animalArray[i];
+                animalEntry[i].AnimalIcon.sprite = animalArray[i].AnimalIcon;
+            }
+            else
+            {
+                animalEntry[i].AnimalIcon.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -124,7 +131,6 @@ public class InterfaceManager : MonoBehaviour
         animalDisplayObj.SetActive(true);
 
         animalNameDisplayText.text = animal.name;
-        animalDescriptionText.text = animal.AnimalDescription;
 
         for (int i = 0; i < animal.AnimalFactArray.Length; i++)
         {

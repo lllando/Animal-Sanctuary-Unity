@@ -12,17 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2833404fcb5d0643a8544a64375f582, type: 3}
   m_Name: Lion
   m_EditorClassIdentifier: 
-  animalDescription: 
+  animalDescription: "Throughout history, lions have been admired as a symbol of
+    power, strength, and courage. Previously, lions roamed throughout all of Africa
+    and parts of Asia and Europe. However, this mighty species is now found only
+    in fragments of sub-Saharan Africa, along with a critically endangered subpopulation
+    in West Africa and a small population of Asiatic lions in India\u2019s Gir National
+    Park."
   animalSpecies: Lion
   animalOrigin: Africa
-  survivalStatus: Endangered
+  survivalStatus: Vulnerable
   animalItem: {fileID: 11400000, guid: 95a4b217b45cf3f498e034656f89f52a, type: 2}
   animalIcon: {fileID: 7877725046641908050, guid: 22e6dd423cd6f134d9f02cb653f07a3c, type: 3}
-  animalImage: {fileID: 7877725046641908050, guid: 22e6dd423cd6f134d9f02cb653f07a3c, type: 3}
+  animalImage: {fileID: 21300000, guid: 094099b326d090e4fb2e0f4fc03e45f9, type: 3}
   animalFactArray:
-  - 
-  - 
-  - 
+  - Compared to other big cat species, lions are the most sociable. They live in
+    groups called prides.
+  - Within their pride, female lions act as the primary hunters and work in teams
+    to prey on zebras, wildebeests, antelope, and other large herbivores.
+  - Lions sleep up to 20 hours a day, so most of their hunting is done at night or
+    early in the morning.
   spriteScale: {x: 8, y: 10, z: 10}
   foodDayDecrease: 60
   thirstDayDecrease: 40

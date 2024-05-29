@@ -37,10 +37,7 @@ public class HabitatController : MonoBehaviour
     {
         foreach (AnimalController animal in animalList)
         {
-            if (GameManager.HabitatManager.FocusAnimal != animal)
-            {
-                animal.UpdateStatsIntervalTime();
-            }
+            animal.UpdateStatsIntervalTime();
         }
     }
 }
