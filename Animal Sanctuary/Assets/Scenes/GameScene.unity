@@ -17370,18 +17370,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1231672421}
-        m_TargetAssemblyTypeName: ExploreInteractive, Assembly-CSharp
-        m_MethodName: OnInteractConfirm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1861539634}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ReturnTimeScale
@@ -80800,6 +80788,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71caa7931d28c5244a7a38e4af17d19d, type: 2}
   - {fileID: 11400000, guid: 3aa95daf59d1bd4439e4b756ec5d57aa, type: 2}
   - {fileID: 11400000, guid: ae2c473258be9494ea30e64c5ab034e8, type: 2}
+  - {fileID: 11400000, guid: 38c5f02561bbbf749b709327378528d7, type: 2}
   coinItem: {fileID: 11400000, guid: ae2c473258be9494ea30e64c5ab034e8, type: 2}
 --- !u!114 &1861539634
 MonoBehaviour:
