@@ -17,6 +17,8 @@ public class ResourceInteractive : MonoBehaviour, Interactive
 
     [SerializeField] private Slider interactSlider;
 
+    [SerializeField] private AudioClip resourceInteractAudioClip;
+
     private int _randomInteracts;
 
     public float InteractDistanceThreshold
@@ -39,6 +41,8 @@ public class ResourceInteractive : MonoBehaviour, Interactive
             interactCanvas.SetActive(true);
             interactSlider.value = _randomInteracts;
 
+            AudioManager.Instance.PlayAudioUsingPrefab(transform.position, resourceInteractAudioClip, true);
+            
             if (_randomInteracts <= 0)
             {
                 for (int i = 0; i < itemCount; i++)

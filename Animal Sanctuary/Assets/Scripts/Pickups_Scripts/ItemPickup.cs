@@ -8,6 +8,10 @@ public class ItemPickup : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip pickupAudioClip;
+
     public Item AssignedItem
     {
         get { return assignedItem; }
@@ -24,6 +28,7 @@ public class ItemPickup : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameManager.InventoryManager.AddItem(assignedItem, amount);
+            AudioManager.Instance.PlayAudioUsingPrefab(gameObject.transform.position, pickupAudioClip, true);
             this.gameObject.SetActive(false);
         }
     }
@@ -31,5 +36,6 @@ public class ItemPickup : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 }

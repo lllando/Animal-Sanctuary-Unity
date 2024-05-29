@@ -59912,6 +59912,7 @@ MonoBehaviour:
   interactDistanceThreshold: 3
   bucketItem: {fileID: 11400000, guid: 3aa95daf59d1bd4439e4b756ec5d57aa, type: 2}
   waterBucketItem: {fileID: 11400000, guid: 6566d02308f834841bc90735db09dcbb, type: 2}
+  waterInteractAudioClip: {fileID: 8300000, guid: 44991738a47f5ec40b961e519168db2b, type: 3}
 --- !u!1 &1173035048
 GameObject:
   m_ObjectHideFlags: 0
@@ -66877,6 +66878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistanceThreshold: 7
+  nextDayInteractAudioClip: {fileID: 8300000, guid: 22e18ffc34bd44c47a4187081b21e1a0, type: 3}
 --- !u!61 &1452674432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81155,6 +81157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9795fcfd825a8f04395ee8ead03746d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPrefab: {fileID: 8691326742254821007, guid: 98469ae3677591646860484ebab648be, type: 3}
 --- !u!1 &1864024383
 GameObject:
   m_ObjectHideFlags: 0
