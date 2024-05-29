@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Stone
   itemIcon: {fileID: 21300000, guid: fbf2268352334c2478ee5a2899a43d82, type: 3}
-  itemCost: 5
-  itemMaxStack: 20
+  itemCost: 15
+  itemMaxStack: 15
   itemScale: {x: 1, y: 1, z: 1}
   itemUseIncrease: 0
-  itemTagList: []
+  itemTagList:
+  - Resource
   itemId: 8

@@ -5874,6 +5874,8 @@ MonoBehaviour:
     rarityThreshold: 8
   - prefab: {fileID: 2742508562992967505, guid: 9de923c1437abce43b9fa3835039e021, type: 3}
     rarityThreshold: 14
+  - prefab: {fileID: 2232089880673591979, guid: 1d7de4c3f1a40ab4c9bfe0b7c2560093, type: 3}
+    rarityThreshold: 7
   environmentPrefabs:
   - prefab: {fileID: 5870183243775357066, guid: 05b6fdf4608a43f43b36dd49690c8045, type: 3}
     rarityThreshold: 47

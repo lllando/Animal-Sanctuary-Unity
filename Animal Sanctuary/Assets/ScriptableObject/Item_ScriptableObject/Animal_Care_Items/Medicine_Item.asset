@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Medicine
   itemIcon: {fileID: 21300000, guid: a7d2253a473d43647a3b5aa20f58c4f5, type: 3}
-  itemCost: 5
-  itemMaxStack: 20
+  itemCost: 25
+  itemMaxStack: 10
   itemScale: {x: 1, y: 1, z: 1}
-  itemUseIncrease: 15
+  itemUseIncrease: 40
   itemTagList:
   - Medicine
   itemId: 4

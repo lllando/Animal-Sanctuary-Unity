@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Bucket
   itemIcon: {fileID: 21300000, guid: 747becbc22b3daf48aa6db00b6488518, type: 3}
-  itemCost: 0
+  itemCost: 25
   itemMaxStack: 1
   itemScale: {x: 1, y: 1, z: 1}
   itemUseIncrease: 0

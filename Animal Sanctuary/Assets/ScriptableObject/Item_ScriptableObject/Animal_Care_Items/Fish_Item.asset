@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fish
   itemIcon: {fileID: 21300000, guid: fa3af0e724c5a2d4c98356a56b905978, type: 3}
-  itemCost: 5
-  itemMaxStack: 20
+  itemCost: 4
+  itemMaxStack: 15
   itemScale: {x: 1, y: 1, z: 1}
   itemUseIncrease: 15
   itemTagList:

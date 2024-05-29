@@ -16,5 +16,5 @@ MonoBehaviour:
   resourceRequirements:
   - {fileID: 11400000, guid: 71caa7931d28c5244a7a38e4af17d19d, type: 2}
   - {fileID: 11400000, guid: 7de862a3e2247014092e9dc449535e2c, type: 2}
-  - {fileID: 11400000, guid: 1856af4b8dd4e3a4f9080b5ef30c9afe, type: 2}
-  resourceCountRequirement: 000000000000000000000000
+  - {fileID: 11400000, guid: 38c5f02561bbbf749b709327378528d7, type: 2}
+  resourceCountRequirement: 1e0000000f00000005000000
