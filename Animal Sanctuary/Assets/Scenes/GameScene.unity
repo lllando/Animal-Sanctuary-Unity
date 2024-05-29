@@ -66878,7 +66878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistanceThreshold: 7
-  nextDayInteractAudioClip: {fileID: 8300000, guid: 22e18ffc34bd44c47a4187081b21e1a0, type: 3}
 --- !u!61 &1452674432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85598,6 +85597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2978d7b190ed0ed408d9926e30e677ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextDayInteractAudioClip: {fileID: 8300000, guid: 22e18ffc34bd44c47a4187081b21e1a0, type: 3}
 --- !u!1 &2076015336
 GameObject:
   m_ObjectHideFlags: 0

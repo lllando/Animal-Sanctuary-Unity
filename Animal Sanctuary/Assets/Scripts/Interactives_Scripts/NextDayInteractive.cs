@@ -4,8 +4,6 @@ public class NextDayInteractive : MonoBehaviour, Interactive
 {
     [SerializeField] private float interactDistanceThreshold;
 
-    [SerializeField] private AudioClip nextDayInteractAudioClip;
-
     public float InteractDistanceThreshold
     {
         get { return interactDistanceThreshold; }
@@ -17,9 +15,6 @@ public class NextDayInteractive : MonoBehaviour, Interactive
         {
             GameManager.InterfaceManager.DisplayEndDayConfirm();
             Debug.Log("Animal Interact!");
-            
-            AudioManager.Instance.PlayAudioUsingPrefab(gameObject.transform.position, nextDayInteractAudioClip);
-
         }
     }
 }
